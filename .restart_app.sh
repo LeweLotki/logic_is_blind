@@ -9,5 +9,5 @@ if [ ! -z "$PID" ]; then
 fi
 
 cd $PROJECT_HOME;
-poetry run python run.py &
+poetry run python run.py > /dev/null 2>&1 &
 
