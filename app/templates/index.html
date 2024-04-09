@@ -2,14 +2,19 @@
 <html>
 <head>
     <title>Fetch Sudoku Image</title>
-    <link rel="stylesheet" href="../static/css/style.css"> <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="../static/css/style.css"> <!-- Make sure the path to your CSS file is correct -->
 </head>
 <body>
-    <form action="/sudoku_preview" method="post">
-        <label for="url">Enter Puzzle URL:</label>
-        <input type="text" id="url" name="url" required>
-        <input type="submit" value="Fetch Image">
-    </form>
+    <div class="container">
+        <form action="/sudoku_preview" method="post">
+            <label for="url">Enter Puzzle URL:</label>
+            <input type="text" id="url" name="url" required>
+            <input type="submit" value="Fetch Image">
+        </form>
+    </div>
+    <footer>
+        &copy; 2024 Logic Is Blind
+    </footer>
 </body>
 </html>
 

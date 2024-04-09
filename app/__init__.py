@@ -1,6 +1,9 @@
 from flask import Flask
-from .index.index import index
-from .sudoku_preview.sudoku_preview import sudoku_preview
+
+from .views.index.index import index
+from .views.sudoku_preview.sudoku_preview import sudoku_preview
+
+from .models.puzzles import puzzles_db
 
 
 class App:
@@ -19,4 +22,12 @@ class App:
 
         self.app.register_blueprint(index)
         self.app.register_blueprint(sudoku_preview)
+
+    def __initialize_models(self):
+
+        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sudoku.db'
+        puzzles_db.init_app(self.app)
+
+        with self.app.app_context():
+            puzzles_db.create_all()
 
