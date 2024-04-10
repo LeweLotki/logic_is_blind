@@ -11,7 +11,8 @@ class App:
     app = Flask(__name__)
 
     def __init__(self):
-
+        
+        self.__initialize_models()
         self.__register_blueprints()    
 
     def run(self, debug=True):
