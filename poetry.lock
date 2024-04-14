@@ -506,6 +506,17 @@ files = [
 attrs = ">=19.2.0"
 
 [[package]]
+name = "packaging"
+version = "24.0"
+description = "Core utilities for Python packages"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "packaging-24.0-py3-none-any.whl", hash = "sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5"},
+    {file = "packaging-24.0.tar.gz", hash = "sha256:eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"},
+]
+
+[[package]]
 name = "pycparser"
 version = "2.22"
 description = "C parser in Python"
@@ -527,6 +538,20 @@ files = [
     {file = "PySocks-1.7.1-py3-none-any.whl", hash = "sha256:2725bd0a9925919b9b51739eea5f9e2bae91e83288108a9ad338b2e3a4435ee5"},
     {file = "PySocks-1.7.1.tar.gz", hash = "sha256:3f8804571ebe159c380ac6de37643bb4685970655d3bba243530d6558b799aa0"},
 ]
+
+[[package]]
+name = "python-dotenv"
+version = "1.0.1"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "python-dotenv-1.0.1.tar.gz", hash = "sha256:e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca"},
+    {file = "python_dotenv-1.0.1-py3-none-any.whl", hash = "sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a"},
+]
+
+[package.extras]
+cli = ["click (>=5.0)"]
 
 [[package]]
 name = "requests"
@@ -755,6 +780,22 @@ socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
+name = "webdriver-manager"
+version = "4.0.1"
+description = "Library provides the way to automatically manage drivers for different browsers"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "webdriver_manager-4.0.1-py2.py3-none-any.whl", hash = "sha256:d7970052295bb9cda2c1a24cf0b872dd2c41ababcc78f7b6b8dc37a41e979a7e"},
+    {file = "webdriver_manager-4.0.1.tar.gz", hash = "sha256:25ec177c6a2ce9c02fb8046f1b2732701a9418d6a977967bb065d840a3175d87"},
+]
+
+[package.dependencies]
+packaging = "*"
+python-dotenv = "*"
+requests = "*"
+
+[[package]]
 name = "werkzeug"
 version = "3.0.2"
 description = "The comprehensive WSGI web application library."
@@ -788,4 +829,4 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "3bc2dfc75f1423e9571dddbb24fde1be3597d1f43135c41e213f36452268ca4b"
+content-hash = "594d62c89cb17d97408eafa5a916ff4bbfe85745da4b28891a69cb4a3a19aa22"
