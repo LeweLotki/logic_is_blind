@@ -25,6 +25,7 @@ class PuzzleScraper:
 if __name__ == '__main__':
 
     scraper = PuzzleScraper()
-    url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000HGQ'
+    url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000HP3'
+    # url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000HGQ'
     scraper.scrape_url(url=url)
 

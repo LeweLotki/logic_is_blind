@@ -27,10 +27,8 @@ class SudokupadScraper:
 
         self.soup = BeautifulSoup(html, 'html.parser')
         
-        # given_cells = [{...}]  # Extract cells using their class and parse into a dictionary.
-                        
         return {
-            # 'given_cells': cells,
+            'given_cells': self.__get_given_cells(),
             'rules'  : self.__get_rules(),
             'title'  : self.__get_title(),
             'author' : self.__get_author()
@@ -67,9 +65,43 @@ class SudokupadScraper:
 
         return self.soup.find('div', class_='puzzle-author').text
 
-    def __get_cells(self) -> str():
+    def __get_given_cells(self) -> str():
 
-        pass
+        svg_container = self.soup.find('svg', class_='boardsvg')
+        if not svg_container:
+            return []
 
+        style = svg_container.get('style', '')
+        width = height = None
+        if "width" in style:
+            width = int(style.split('width:')[1].split('px')[0].strip())
+        if "height" in style:
+            height = int(style.split('height:')[1].split('px')[0].strip())
+
+        width = width or 608
+        height = height or 608
+
+        cell_size = width / 9
+
+        cell_givens = self.soup.find('g', id='cell-givens')
+        if not cell_givens:
+            return []
+
+        givens = []
+        for text in cell_givens.find_all('text', class_='cell-given'):
+            digit = text.get_text(strip=True)
+            x = float(text['x'])
+            y = float(text['y'])
+
+            column = int(x // cell_size) + 1
+            row = int(y // cell_size) + 1
+
+            givens.append({
+                    'row': row, 
+                    'column': column, 
+                    'digit': digit
+                })
+
+        return givens
 
 

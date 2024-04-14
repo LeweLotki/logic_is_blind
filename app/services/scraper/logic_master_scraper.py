@@ -27,10 +27,11 @@ class LogicMasterScraper:
     def __get_sudoku_pad_ref(self) -> str():
 
         sudoku_pad_ref = None
-        sudoku_pad_ref_tag = self.soup.find('a', href=lambda href: href and 'crackingthecryptic' in href)
+        sudoku_pad_ref_tag = self.soup.find('a', href=lambda href: href and ('crackingthecryptic' in href or 'sudokupad' in href))
         if sudoku_pad_ref_tag:
             sudoku_pad_ref = sudoku_pad_ref_tag['href']
         return sudoku_pad_ref
+        
 
     def __get_difficulty(self) -> str():
 
