@@ -28,6 +28,7 @@ class SudokupadScraper:
         self.soup = BeautifulSoup(html, 'html.parser')
         
         return {
+            'sudoku_size' : self.__get_sudoku_size(),
             'given_cells': self.__get_given_cells(),
             'rules'  : self.__get_rules(),
             'title'  : self.__get_title(),
@@ -63,7 +64,13 @@ class SudokupadScraper:
 
     def __get_author(self) -> str():
 
-        return self.soup.find('div', class_='puzzle-author').text
+        author = self.soup.find('div', class_='puzzle-author').text
+        if author is not None:
+            author = author.replace('\xa0by', '') if '\xa0by' in author else author
+            author = author[1:] if author[0] == ' ' else author
+        else: author = 'unknown'
+
+        return author
 
     def __get_given_cells(self) -> str():
 
@@ -106,9 +113,24 @@ class SudokupadScraper:
         width = width or 608
         height = height or 608
 
-        sudoku_size = 9
+        sudoku_size = self.__get_sudoku_size()
+        sudoku_size = sudoku_size[1] if sudoku_size is not None else 9
 
         cell_size = width / sudoku_size
 
         return cell_size
+
+    def __get_sudoku_size(self) -> tuple():
+
+        grid = self.soup.find('div', class_='grid')
+        if not grid:
+            return None
+
+        rows = grid.find_all('div', class_='row')
+        num_rows = len(rows)
+        
+        cells_in_row = rows[0].find_all('div', class_='cell')
+        num_columns = len(cells_in_row) if rows else 0
+
+        return (num_rows, num_columns)
 
