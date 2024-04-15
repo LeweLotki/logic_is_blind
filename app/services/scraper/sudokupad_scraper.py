@@ -67,21 +67,7 @@ class SudokupadScraper:
 
     def __get_given_cells(self) -> str():
 
-        svg_container = self.soup.find('svg', class_='boardsvg')
-        if not svg_container:
-            return []
-
-        style = svg_container.get('style', '')
-        width = height = None
-        if "width" in style:
-            width = int(style.split('width:')[1].split('px')[0].strip())
-        if "height" in style:
-            height = int(style.split('height:')[1].split('px')[0].strip())
-
-        width = width or 608
-        height = height or 608
-
-        cell_size = width / 9
+        cell_size = self.__get_cell_size()
 
         cell_givens = self.soup.find('g', id='cell-givens')
         if not cell_givens:
@@ -104,4 +90,25 @@ class SudokupadScraper:
 
         return givens
 
+    def __get_cell_size(self):
+
+        svg_container = self.soup.find('svg', class_='boardsvg')
+        if not svg_container:
+            return []
+
+        style = svg_container.get('style', '')
+        width = height = None
+        if "width" in style:
+            width = int(style.split('width:')[1].split('px')[0].strip())
+        if "height" in style:
+            height = int(style.split('height:')[1].split('px')[0].strip())
+
+        width = width or 608
+        height = height or 608
+
+        sudoku_size = 9
+
+        cell_size = width / sudoku_size
+
+        return cell_size
 
