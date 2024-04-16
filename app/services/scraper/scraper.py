@@ -1,5 +1,9 @@
-from logic_master_scraper import LogicMasterScraper
-from sudokupad_scraper import SudokupadScraper
+try:
+    from logic_master_scraper import LogicMasterScraper
+    from sudokupad_scraper import SudokupadScraper
+except Exception:
+    from app.services.scraper.logic_master_scraper import LogicMasterScraper
+    from app.services.scraper.sudokupad_scraper import SudokupadScraper
 
 class PuzzleScraper:
     
@@ -20,7 +24,8 @@ class PuzzleScraper:
             self.data = logic_master_data.update(sudoku_pad_data)
 
         self.data = logic_master_data
-        print(self.data)
+        return self.data
+
 
 if __name__ == '__main__':
 

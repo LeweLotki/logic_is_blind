@@ -5,11 +5,13 @@ from bs4 import BeautifulSoup
 class LogicMasterScraper:
 
     soup = None
+    url = None
 
     def __init__(self): pass
 
     def scrape_url(self, url):
 
+        self.url = url
         response = requests.get(url)
         self.soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -23,7 +25,12 @@ class LogicMasterScraper:
 
     def __get_puzzle_image(self) -> str():
 
-        return self.soup.find('img')['src']
+        img_src = self.soup.find('img')['src']
+        if not img_src.startswith(('http:', 'https:')):
+            base_url = '/'.join(self.url.split('/')[:3])
+            img_src = base_url + img_src
+        return img_src
+
 
     def __get_sudoku_pad_ref(self) -> str():
 

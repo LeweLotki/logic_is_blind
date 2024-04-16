@@ -2,19 +2,10 @@ from flask import Blueprint, request, render_template
 import requests
 from bs4 import BeautifulSoup
 
+# from app.services.scraper.scraper import PuzzleScraper 
+
 sudoku_preview = Blueprint('sudoku_preview', __name__)
 
-'''
-def fetch_image():
-    url = request.form['url']
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    image_src = soup.find('img')['src']
-    if not image_src.startswith(('http:', 'https:')):
-        base_url = '/'.join(url.split('/')[:3])
-        image_src = base_url + image_src
-    return render_template('sudoku_preview.html', image_src=image_src)
-'''
 
 class SudokuPreview:
 
@@ -23,7 +14,12 @@ class SudokuPreview:
         self.image_src = ''
 
     def display(self):
-        
+
+        # scraper = PuzzleScraper()
+        # url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000HGQ'
+        # data = scraper.scrape_url(url=url)
+        # self.image_src = data['puzzle_image']
+      
         return render_template('sudoku_preview.html', image_src=self.image_src)
 
 
