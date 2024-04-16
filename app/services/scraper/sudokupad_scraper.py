@@ -12,18 +12,20 @@ class SudokupadScraper:
     soup = None
     binary_location = '/snap/firefox/current/usr/lib/firefox/firefox'
 
-    def __init__(self): pass
+    def __init__(self): 
+
+        self.web_driver = self.__setup_web_driver() 
+
+    def __del__(self):
+
+        self.web_driver.quit()
 
     def scrape_url(self, url):
 
-        web_driver = self.__setup_web_driver()
-
-        web_driver.get(url)
+        self.web_driver.get(url)
         sleep(1)
 
-        html = web_driver.page_source
-
-        web_driver.quit()
+        html = self.web_driver.page_source
 
         self.soup = BeautifulSoup(html, 'html.parser')
         

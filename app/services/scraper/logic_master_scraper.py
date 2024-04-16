@@ -14,6 +14,7 @@ class LogicMasterScraper:
         self.soup = BeautifulSoup(response.text, 'html.parser')
 
         return {
+            'logic_master_ref' : url,
             'puzzle_image'   : self.__get_puzzle_image(),
             'sudoku_pad_ref' : self.__get_sudoku_pad_ref(),
             'difficulty'     : self.__get_difficulty(),
@@ -35,7 +36,7 @@ class LogicMasterScraper:
 
     def __get_difficulty(self) -> str():
 
-        difficulty_row = self.soup.find(lambda tag: tag.name == 'td' and 'Schwierigkeit' in tag.get_text())
+        difficulty_row = self.soup.find(lambda tag: tag.name == 'td' and ('Schwierigkeit' in tag.get_text() or 'Difficulty' in tag.get_text()))
         difficulty = None
         if difficulty_row:
             difficulty = difficulty_row.find('img').get('title')
