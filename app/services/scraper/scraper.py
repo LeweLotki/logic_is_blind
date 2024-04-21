@@ -22,7 +22,7 @@ class PuzzleScraper:
         if 'sudoku_pad_ref' in logic_master_data and logic_master_data['sudoku_pad_ref'] is not None:
             sudoku_pad_data = self.sudokupad_scraper.scrape_url(logic_master_data['sudoku_pad_ref'])
             self.data = logic_master_data.update(sudoku_pad_data)
-
+        
         self.data = logic_master_data
         return self.data
 
@@ -35,5 +35,5 @@ if __name__ == '__main__':
     # url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000HL0'
     # url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000HKV'
     # url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000AED'
-    scraper.scrape_url(url=url)
+    print(scraper.scrape_url(url=url))
 
