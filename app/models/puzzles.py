@@ -1,10 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, String, Integer, JSON, Boolean
+from . import db
 
-puzzles_db = SQLAlchemy()
 
-
-class SudokuPuzzle(puzzles_db.Model):
+class TablePuzzle(db.Model):
 
     __tablename__ = 'sudoku_puzzle'
 
@@ -18,4 +16,3 @@ class SudokuPuzzle(puzzles_db.Model):
     title = Column(String, index=True)
     author = Column(String)
     difficulty = Column(String)
-    scraped = Column(Boolean, default=False)

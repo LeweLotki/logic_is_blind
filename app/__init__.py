@@ -3,7 +3,7 @@ from flask import Flask
 from .views.index.index import index
 from .views.sudoku_preview.sudoku_preview import sudoku_preview
 
-from .models.puzzles import puzzles_db
+from .models import db
 
 
 class App:
@@ -27,8 +27,8 @@ class App:
     def __initialize_models(self):
 
         self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sudoku.db'
-        puzzles_db.init_app(self.app)
+        db.init_app(self.app)
 
         with self.app.app_context():
-            puzzles_db.create_all()
+            db.create_all()
 
