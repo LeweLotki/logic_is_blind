@@ -1,4 +1,6 @@
 import requests
+import random
+import logging
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
@@ -12,10 +14,14 @@ from app.models.puzzles import TablePuzzle
 
 class Scraper:
     '''This class is called by flask command to initialize scraper service'''    
+    
+    logic_master_base_url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php'
 
     def __init__(self):  
         '''Initializing particular scrapers constructors'''
 
+        logging.basicConfig(filename='services.log', level=logging.INFO)
+        self.logger = logging.getLogger(__name__)
         self.logic_master_scraper = LogicMasterScraper()
         self.sudokupad_scraper = SudokupadScraper()
 
@@ -36,11 +42,61 @@ class Scraper:
                     is_data_complete = self.__commit_collected_data(data)
                     if is_data_complete:
                         url_entry.scraped = True
+                        self.logger.info(f'Succesfully scraped: {url_entry}')
                     db.session.commit()
 
             except Exception as e:
-                print(f"Error scraping {url_entry.url}: {e}")
+                self.logger.error(f"Error scraping {url_entry.url}: {e}")
                 db.session.rollback()
+
+    def scrape_by_id(self):
+        '''
+        If there is no url given, method 
+        generate new url from random id.
+        Then scrape it and save data to db.
+        Do it in the loop.
+        '''
+      
+        number_of_urls_to_scrape = 100
+        for i in range(number_of_urls_to_scrape):
+
+            is_url_in_db = False
+            while not is_url_in_db:
+
+                new_url = self.__generate_new_url()
+                if not TableURL.query.filter_by(url=new_url).first():
+
+                    self.logger.info(f'New url generated: {new_url}')
+                    new_url = TableURL(url=new_url, scraped=False)
+                    db.session.add(new_url)
+                    is_url_in_db = True
+                    db.session.commit()
+
+        urls_to_scrape = TableURL.query.filter_by(scraped=False).all()
+        for url_entry in urls_to_scrape:
+
+            try:
+                data = self.__collect_sudoku_data(url=url_entry.url)
+                if data:
+                    is_data_complete = self.__commit_collected_data(data)
+                    if is_data_complete:
+                        url_entry.scraped = True
+                        self.logger.info(f'Succesfully scraped: {url_entry}')
+                    db.session.commit()
+
+            except Exception as e:
+                self.logger.error(f"Error scraping {url_entry.url}: {e}")
+                db.session.rollback()
+
+
+    def __generate_new_url(self):
+
+        second_part_characters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+        random_id = '000' + random.choice(second_part_characters) + str(random.randint(10, 99))
+
+        url = f'{self.logic_master_base_url}?id={random_id}'
+
+        return url
 
     def __collect_urls(self, base_url: str) -> None:
         '''This method collect all urls from given base_url and save them to db'''

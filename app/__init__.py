@@ -1,5 +1,6 @@
 from flask import Flask
 import click
+import logging
 
 from .views.index.index import index
 from .views.sudoku_preview.sudoku_preview import sudoku_preview
@@ -14,7 +15,10 @@ class App:
     app = Flask(__name__)
     
     def __init__(self, *args, **kwargs):
-       
+ 
+        logging.basicConfig(filename='app.log', level=logging.INFO)
+        self.logger = logging.getLogger(__name__)
+
         self.__register_models()
         self.__register_blueprints()    
         self.__register_commands()
@@ -42,13 +46,17 @@ class App:
     def __register_commands(self):
 
         @self.app.cli.command("run-scraper")
-        @click.argument('url')
+        @click.argument('url', required=False, default=None)
         def run_scraper_command(url):
             """ Command to start the scraping process. """
             with self.app.app_context():
                 scraper = Scraper()
-                scraper.scrape_url(url)
-                print(f"Scraping completed for {url}.")
+                if not (url is None):
+                    scraper.scrape_url(url)
+                else:
+                    scraper.scrape_by_id()
+                self.logger.info(f"Scraping completed for {url}.")
+
 
 app_instance = App()
 app = app_instance.app
