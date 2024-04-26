@@ -1,4 +1,6 @@
 from flask import Flask
+from flask_migrate import Migrate
+
 import click
 import logging
 
@@ -22,6 +24,7 @@ class App:
         self.__register_models()
         self.__register_blueprints()    
         self.__register_commands()
+        self.__register_migrate()
 
     def __call__(self, environ, start_response):
         return self.app(environ, start_response)
@@ -57,6 +60,8 @@ class App:
                     scraper.scrape_by_id()
                 self.logger.info(f"Scraping completed for {url}.")
 
+    def __register_migrate(self):
+        migrate = Migrate(self.app, db)
 
 app_instance = App()
 app = app_instance.app

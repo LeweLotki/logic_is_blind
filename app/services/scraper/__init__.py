@@ -56,7 +56,7 @@ class Scraper:
         Then scrape it and save data to db.
         Do it in the loop.
         '''
-      
+        '''   
         number_of_urls_to_scrape = 100
         for i in range(number_of_urls_to_scrape):
 
@@ -71,6 +71,15 @@ class Scraper:
                     db.session.add(new_url)
                     is_url_in_db = True
                     db.session.commit()
+        '''
+
+        new_url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000HGQ'
+        if not TableURL.query.filter_by(url=new_url).first():
+
+            self.logger.info(f'New url generated: {new_url}')
+            new_url = TableURL(url=new_url, scraped=False)
+            db.session.add(new_url)
+            db.session.commit()
 
         urls_to_scrape = TableURL.query.filter_by(scraped=False).all()
         for url_entry in urls_to_scrape:
@@ -137,8 +146,7 @@ class Scraper:
             'solution_code', 
             'rules', 
             'title', 
-            'author', 
-            'difficulty'
+            'author' 
         ]
 
         if all(data.get(field) is not None for field in required_fields):
