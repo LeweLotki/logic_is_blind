@@ -8,15 +8,19 @@ from .models import db
 
 from .services.scraper import Scraper
 
+
 class App:
 
     app = Flask(__name__)
-
-    def __init__(self):
-        
+    
+    def __init__(self, *args, **kwargs):
+       
         self.__register_models()
         self.__register_blueprints()    
         self.__register_commands()
+
+    def __call__(self, environ, start_response):
+        return self.app(environ, start_response)
 
     def run(self, debug=True):
 
@@ -45,4 +49,7 @@ class App:
                 scraper = Scraper()
                 scraper.scrape_url(url)
                 print(f"Scraping completed for {url}.")
+
+app_instance = App()
+app = app_instance.app
 
