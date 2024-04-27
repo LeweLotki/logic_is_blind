@@ -5,7 +5,6 @@ import click
 import logging
 
 from .views.index.index import index
-from .views.sudoku_preview.sudoku_preview import sudoku_preview
 
 from .models import db
 
@@ -14,7 +13,7 @@ from .services.scraper import Scraper
 
 class App:
 
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='../frontend/build', static_url_path='')
     
     def __init__(self, *args, **kwargs):
  
@@ -36,7 +35,6 @@ class App:
     def __register_blueprints(self):
 
         self.app.register_blueprint(index)
-        self.app.register_blueprint(sudoku_preview)
 
     def __register_models(self):
 
