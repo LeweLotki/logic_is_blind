@@ -1,4 +1,5 @@
 @import-normalize;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,6 +31,55 @@ body {
   }
   .sidebar-icon {
     @apply w-full h-12 flex justify-center items-center hover:bg-gray-400 transition-colors duration-200 cursor-pointer;
+  }
+}
+
+@layer base {
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    @apply bg-gray-300;
+  }
+}
+
+@layer components {
+  .puzzle-item {
+    @apply flex justify-between divide-x divide-gray-400 bg-gray-600 text-white opacity-100 shadow-md my-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105;
+  }
+  .pagination-controls {
+    @apply flex justify-center items-center py-4;
+  }
+  .page-control-btn {
+    @apply text-white hover:text-gray-300 text-lg;
+  }
+}
+
+@layer components {
+  .app-container {
+    @apply min-h-screen flex flex-col justify-center items-center;
+  }
+  
+  .puzzle-list {
+    @apply w-full max-w-2xl mx-auto my-8 p-6 bg-gray-700 rounded-lg shadow-lg flex flex-col items-center text-white;
+  }
+}
+
+@layer components {
+  .puzzle-label {
+    @apply text-white font-semibold px-2;
+  }
+  .divider {
+    @apply text-white w-px mx-4;
   }
 }
     
