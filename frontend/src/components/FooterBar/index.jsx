@@ -24,7 +24,7 @@ const FooterBar = () => {
     </a>
   );
 
-const Divider = () => <hr className="sidebar-hr" />;
+const Divider = () => <hr className="footerbar-hr" />;
 
 export default FooterBar;
   

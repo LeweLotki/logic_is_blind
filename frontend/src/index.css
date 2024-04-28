@@ -11,18 +11,14 @@ body {
 }
 
 @layer components {
-    .sidebar-icon {
-      @apply relative flex items-center justify-center 
-      h-12 w-12 mt-2 mb-2 mx-auto  
-    bg-gray-400 hover:bg-green-600 dark:bg-gray-800 
-    text-green-500 hover:text-white
-      hover:rounded-xl rounded-3xl
-      transition-all duration-300 ease-linear
+    .footerbar-icon {
+      @apply flex  
+      hover:scale-110 transition-transform duration-300
       cursor-pointer shadow-lg ;
     }
 }
 
-.sidebar-hr {
+.footerbar-hr {
     @apply bg-gray-600 dark:bg-gray-600 
     border border-gray-600 dark:border-gray-600 rounded-full
     mx-4;
