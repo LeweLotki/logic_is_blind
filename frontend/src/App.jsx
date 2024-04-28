@@ -4,6 +4,7 @@ import FooterBar from './components/FooterBar';
 import Logo from './components/Logo';
 import Sidebar from './components/SideBar';
 import PuzzleList from './components/PuzzleList';
+import Filter from './components/Filter';
 
 function App() {
   return (
@@ -11,7 +12,10 @@ function App() {
 
       <Logo />
       <Sidebar />
-      <PuzzleList />
+      <div className="main-content flex">
+        <PuzzleList />
+        <Filter />
+      </div>
       <FooterBar />
 
     </div>

@@ -82,7 +82,36 @@ body {
     @apply text-white w-px mx-4;
   }
 }
-    
 
+@layer components {
+  .filter-container {
+    @apply w-64 bg-gray-800 text-white rounded-lg shadow-md mt-4 mb-4 mx-4 flex flex-col;
+  }
+  .filter-header, .filter-footer {
+    @apply bg-gray-700 rounded-lg p-2;
+  }
+  .filter-body {
+    @apply flex-grow p-4 flex flex-col justify-center; /* Adjust justify-content if necessary */
+  }
+  .apply-button {
+    @apply bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-4 mx-auto; /* Margin-top can be adjusted */
+  }
+  .filter-label {
+    @apply my-1 text-sm font-bold; /* Reduced margin around labels */
+  }
+  .filter-select {
+    @apply mb-2 p-3 rounded bg-gray-700 text-white; /* Reduced margin-bottom for selects */
+  }
+}
+
+
+
+@layer components {
+  .main-content {
+    @apply flex justify-center items-start; /* Horizontally align and start align vertically */
+  }
+}
+
+  
 
 

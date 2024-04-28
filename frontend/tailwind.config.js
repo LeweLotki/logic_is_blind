@@ -11,6 +11,12 @@ module.exports = {
         },
         width: {
           '50': '12.5rem',
+        },
+        fontFamily: {
+          montserrat: ['Montserrat', 'sans-serif'],
+        },
+        spacing: {
+          '5': '1.25rem'
         }
       }
   },
