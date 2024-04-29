@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 import click
 import logging
@@ -24,6 +25,7 @@ class App:
         self.__register_blueprints()    
         self.__register_commands()
         self.__register_migrate()
+        self.__register_cors()
 
     def __call__(self, environ, start_response):
         return self.app(environ, start_response)
@@ -60,6 +62,9 @@ class App:
 
     def __register_migrate(self):
         migrate = Migrate(self.app, db)
+
+    def __register_cors(self):
+        CORS(self.app)
 
 app_instance = App()
 app = app_instance.app
