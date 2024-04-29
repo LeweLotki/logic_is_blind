@@ -1,4 +1,5 @@
 @import-normalize;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,22 +12,117 @@ body {
 }
 
 @layer components {
-    .sidebar-icon {
-      @apply relative flex items-center justify-center 
-      h-12 w-12 mt-2 mb-2 mx-auto  
-    bg-gray-400 hover:bg-green-600 dark:bg-gray-800 
-    text-green-500 hover:text-white
-      hover:rounded-xl rounded-3xl
-      transition-all duration-300 ease-linear
+    .footerbar-icon {
+      @apply flex  
+      hover:scale-110 transition-transform duration-300
       cursor-pointer shadow-lg ;
     }
 }
 
-.sidebar-hr {
+.footerbar-hr {
     @apply bg-gray-600 dark:bg-gray-600 
     border border-gray-600 dark:border-gray-600 rounded-full
     mx-4;
     }
 
+@layer components {
+  .sidebar {
+    @apply fixed top-0 right-0 h-full w-16 bg-gray-300 flex flex-col justify-start items-center pt-4;
+  }
+  .sidebar-icon {
+    @apply w-full h-12 flex justify-center items-center hover:bg-gray-400 transition-colors duration-200 cursor-pointer;
+  }
+}
+
+@layer base {
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    @apply bg-gray-300;
+  }
+}
+
+@layer components {
+  .puzzle-item {
+    @apply flex justify-between divide-x divide-gray-400 bg-gray-600 text-white opacity-100 shadow-md my-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105;
+  }
+  .pagination-controls {
+    @apply flex justify-center items-center py-4;
+  }
+  .page-control-btn {
+    @apply text-white hover:text-gray-300 text-lg;
+  }
+}
+
+@layer components {
+  .app-container {
+    @apply min-h-screen flex flex-col justify-center items-center;
+  }
+  
+  .puzzle-list {
+    @apply w-full max-w-2xl mx-auto my-8 p-6 bg-gray-700 rounded-lg shadow-lg flex flex-col items-center text-white;
+  }
+}
+
+@layer components {
+  .puzzle-label {
+    @apply text-white font-semibold px-2;
+  }
+  .divider {
+    @apply text-white w-px mx-4;
+  }
+}
+
+@layer components {
+  .filter-container {
+    @apply w-64 bg-gray-800 text-white rounded-lg shadow-md mt-4 mb-4 mx-4 flex flex-col;
+  }
+  .filter-header, .filter-footer {
+    @apply bg-gray-700 rounded-lg p-2;
+  }
+  .filter-body {
+    @apply flex-grow p-4 flex flex-col justify-center; /* Adjust justify-content if necessary */
+  }
+  .apply-button {
+    @apply bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-4 mx-auto; /* Margin-top can be adjusted */
+  }
+  .filter-label {
+    @apply my-1 text-sm font-bold; /* Reduced margin around labels */
+  }
+  .filter-select {
+    @apply mb-2 p-3 rounded bg-gray-700 text-white; /* Reduced margin-bottom for selects */
+  }
+}
+
+@layer components {
+  .logo-container:hover .logo-bw {
+    opacity: 0;
+  }
+  .logo-container:hover .logo-color {
+    opacity: 100;
+  }
+  .logo-container:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+}
+
+@layer components {
+  .main-content {
+    @apply flex justify-center items-start; /* Horizontally align and start align vertically */
+  }
+}
+
+  
 
 

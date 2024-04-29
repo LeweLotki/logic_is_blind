@@ -18,13 +18,13 @@ const FooterBar = () => {
     );
   };
   
-  const FooterBarIcon = ({ icon, href='' }) => (
-    <a className="footerbar-icon group" href={href}>
-      {icon}
-    </a>
-  );
+const FooterBarIcon = ({ icon, href='' }) => (
+  <a className="footerbar-icon group" href={href}>
+    {icon}
+  </a>
+);
 
-const Divider = () => <hr className="sidebar-hr" />;
+const Divider = () => <hr className="footerbar-hr" />;
 
 export default FooterBar;
   
