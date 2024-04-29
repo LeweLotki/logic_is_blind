@@ -1,20 +1,15 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-const FilterContext = createContext();
+const FilterContext = createContext(null);  // Set a default value, here it's null
 
-export const useFilters = () => useContext(FilterContext);
+export const useFilter = () => useContext(FilterContext);
 
 export const FilterProvider = ({ children }) => {
-    const [filters, setFilters] = useState({
-        difficulty: '',
-        mode: '',
-        author: ''
-    });
+    const [difficulty, setDifficulty] = useState('');
 
     return (
-        <FilterContext.Provider value={{ filters, setFilters }}>
+        <FilterContext.Provider value={{ difficulty, setDifficulty }}>
             {children}
         </FilterContext.Provider>
     );
 };
-

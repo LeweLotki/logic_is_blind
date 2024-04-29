@@ -5,6 +5,7 @@ import Logo from './components/Logo';
 import Sidebar from './components/SideBar';
 import PuzzleList from './components/PuzzleList';
 import Filter from './components/Filter';
+import { FilterProvider } from './hooks/FilterContext';
 
 function App() {
   return (
@@ -12,10 +13,12 @@ function App() {
 
       <Logo />
       <Sidebar />
-      <div className="main-content flex">
-        <PuzzleList />
-        <Filter />
-      </div>
+      <FilterProvider >
+        <div className="main-content flex">
+          <PuzzleList />
+          <Filter />
+        </div>
+      </FilterProvider>
       <FooterBar />
 
     </div>
