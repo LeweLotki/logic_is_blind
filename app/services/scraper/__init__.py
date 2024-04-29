@@ -88,6 +88,7 @@ class Scraper:
                 self.logger.error(f"Error scraping {url_entry.url}: {e}")
                 db.session.rollback()
 
+            self.__translate_difficulty()
 
     def __generate_new_url(self):
 
@@ -160,6 +161,31 @@ class Scraper:
         else: 
             return False
 
+    def __translate_difficulty(self):
+
+        difficulty_dict = {
+            "sehr leichtes": "very easy",
+            "leichtes": "easy",
+            "mittelschweres": "medium",
+            "schweres": "hard",
+            "sehr schweres": "very hard"
+        }
+
+        puzzles_to_translate = TablePuzzle.query.all()
+        for puzzle_to_translate in puzzles_to_translate:
+            try:
+                for key, value in difficulty_dict.items():
+                    if key in puzzle_to_translate.difficulty and 'sehr' in key:
+                        puzzle_to_translate.difficulty = value
+                    elif key in puzzle_to_translate.difficulty:
+                        puzzle_to_translate.difficulty = value
+
+                self.logger.info(f'Succesfully translated puzzle {puzzle_to_translate.title}')
+                db.session.commit()
+
+            except Exception as e:
+                self.logger.error(f'Error while translating difficulty: {e}')
+                db.session.rollback()
 
 if __name__ == '__main__':
 
