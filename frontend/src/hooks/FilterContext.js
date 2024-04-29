@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-const FilterContext = createContext(null);  // Set a default value, here it's null
+const FilterContext = createContext(null); 
 
 export const useFilter = () => useContext(FilterContext);
 

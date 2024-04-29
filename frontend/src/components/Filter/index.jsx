@@ -1,8 +1,3 @@
-////////////////////////////
-
-
-
-// ./components/Filter/index.jsx
 import React, { useState } from 'react';
 import { useFilter } from '../../hooks/FilterContext';
 

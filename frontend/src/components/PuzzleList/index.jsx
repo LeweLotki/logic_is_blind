@@ -1,7 +1,3 @@
-//////////////////////
-
-
-// ./components/PuzzleList/index.jsx
 import React, { useEffect, useState } from 'react';
 import fetchData from '../../fetchData';
 import PuzzleItem from './PuzzleItem';
