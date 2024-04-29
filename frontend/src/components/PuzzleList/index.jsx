@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import PuzzleItem from './PuzzleItem';
+import fetchData from '../../fetchData';
 
 const PuzzleList = () => {
-  const [puzzles, setPuzzles] = useState([]);  // Initialize state for puzzles
+  const [puzzles, setPuzzles] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    // Fetch puzzles from your Flask API
-    fetch('http://localhost:8000/serializer/puzzle-list')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setPuzzles(data);  // Set the fetched puzzles into state
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);  // Empty dependency array means this effect runs once after the initial render
+    const url = `http://localhost:8000/serializer/puzzle-list?page=${currentPage}`;
+    fetchData(url).then(data => {
+      if (data) {
+        setPuzzles(data);
+      }
+    });
+  }, [currentPage]);  // Depend on currentPage so it fetches new data when page changes
+
+  const handleNext = () => {
+    setCurrentPage(prev => prev + 1);
+  };
+
+  const handlePrev = () => {
+    setCurrentPage(prev => prev - 1);
+  };
 
   return (
     <div className="puzzle-list rounded-lg shadow-lg overflow-hidden my-4">
@@ -27,8 +29,8 @@ const PuzzleList = () => {
         <PuzzleItem key={index} puzzle={puzzle} />
       ))}
       <div className="pagination-controls py-2 flex justify-center">
-        <button className="page-control-btn mx-2">&lt;</button>
-        <button className="page-control-btn mx-2">&gt;</button>
+        <button className="page-control-btn mx-2" onClick={handlePrev} disabled={currentPage <= 1}>&lt;</button>
+        <button className="page-control-btn mx-2" onClick={handleNext}>&gt;</button>
       </div>
     </div>
   );
