@@ -138,7 +138,8 @@ body {
 
 @layer components {
   .puzzle-list {
-    @apply grid grid-cols-1 gap-4 w-full max-w-2xl mx-auto my-8 p-6 bg-gray-700 rounded-lg shadow-lg flex flex-col items-stretch text-white;
+    @apply w-full max-w-2xl mx-auto my-8 p-6 bg-gray-700 rounded-lg shadow-lg;
+    @apply grid grid-cols-1 gap-4;
   }
 
   .puzzle-item-container {
@@ -146,9 +147,12 @@ body {
   }
 
   .puzzle-item {
-    @apply flex justify-between items-center py-2 px-4 bg-gray-600 text-white w-full; /* Flex-grow removed, full width applied */
+    @apply flex justify-between items-center p-3 bg-gray-600 text-white w-full; /* Ensures width is full within container */
+    @apply h-16;  /* Flex-grow removed, full width applied */
   }
 
+
+  
   .puzzle-tooltip {
     @apply absolute w-24 h-24 bg-gray-800 rounded-lg shadow-lg flex justify-center items-center overflow-hidden z-50 opacity-0 invisible transition-opacity duration-300 ease-in-out;
     left: calc(-100% - 0.5rem); /* Adjusted to fully appear to the left */
