@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import fetchData from '../../fetchData';
+import fetchData from '../../utils/fetchData';
 import PuzzleItem from './PuzzleItem';
 import { useFilter } from '../../hooks/FilterContext';
 
