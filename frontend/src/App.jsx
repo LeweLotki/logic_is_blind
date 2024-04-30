@@ -1,37 +1,29 @@
 import './index.css';
 
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-import FooterBar from './components/FooterBar';
-import Logo from './components/Logo';
-import Sidebar from './components/SideBar';
-import PuzzleList from './components/PuzzleList';
-import Filter from './components/Filter';
-
-import { FilterProvider } from './hooks/FilterContext';
+import Home from './pages/Home';
+import Preview from './pages/Preview';
+import NotFound from './pages/NotFound';
 
 import favicon from './assets/brain-32x32.png'
-
 const TITLE = 'Logic Is Blind';
 
 function App() {
   return (
-    <div className="app-container min-h-screen w-full bg-gray-300">
-        <Helmet>
-          <title>{ TITLE }</title>
-          <link rel="icon" type="image/png" href={favicon} />
-        </Helmet>
-      <Logo />
-      <Sidebar />
-      <FilterProvider >
-        <div className="main-content flex">
-          <PuzzleList />
-          <Filter />
-        </div>
-      </FilterProvider>
-      <FooterBar />
-
-    </div>
+    <Router>
+      <Helmet>
+        <title>{TITLE}</title>
+        <link rel="icon" type="image/png" href={favicon} />
+      </Helmet>
+      <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/preview" element={<Preview />} />
+          <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 
