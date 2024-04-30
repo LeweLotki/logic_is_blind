@@ -8,7 +8,8 @@ import logging
 from .views.index.index import index
 
 from .models import db
-from .models.serializers.puzzle_list import serializer 
+from .models.serializers.puzzle_list import puzzle_list_serializer 
+from .models.serializers.pop_up import pop_up_serializer 
 
 from .services.scraper import Scraper
 
@@ -38,7 +39,8 @@ class App:
     def __register_blueprints(self):
 
         self.app.register_blueprint(index)
-        self.app.register_blueprint(serializer, url_prefix='/serializer')
+        self.app.register_blueprint(puzzle_list_serializer, url_prefix='/serializer')
+        self.app.register_blueprint(pop_up_serializer, url_prefix='/serializer')
 
     def __register_models(self):
 

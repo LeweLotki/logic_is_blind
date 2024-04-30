@@ -3,10 +3,10 @@ from app.models.puzzles import TablePuzzle
 
 from flask import request
 
-serializer = Blueprint('serializer', __name__)
+puzzle_list_serializer = Blueprint('puzzle_list_serializer', __name__)
 
 
-@serializer.route('/puzzle-list')
+@puzzle_list_serializer.route('/puzzle-list')
 def puzzle_list():
     page = request.args.get('page', 1, type=int)
     difficulty = request.args.get('difficulty', type=str)
@@ -19,6 +19,7 @@ def puzzle_list():
 
     puzzles = query.offset(offset).limit(limit).all()
     return jsonify([serialize(puzzle) for puzzle in puzzles])
+
 
 def serialize(self):
     return {
