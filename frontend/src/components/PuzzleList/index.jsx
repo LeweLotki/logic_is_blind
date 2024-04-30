@@ -22,7 +22,7 @@ const PuzzleList = () => {
     const handlePrev = () => setCurrentPage(prev => prev > 1 ? prev - 1 : 1);
 
     return (
-        <div className="puzzle-list rounded-lg shadow-lg overflow-hidden my-4">
+        <div className="puzzle-list rounded-lg shadow-lg my-4">
             {puzzles.map(puzzle => <PuzzleItem key={puzzle.id} puzzle={puzzle} />)}
             <div className="pagination-controls py-2 flex justify-center">
                 <button className="page-control-btn mx-2" onClick={handlePrev} disabled={currentPage === 1}>Prev</button>

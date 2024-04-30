@@ -117,6 +117,61 @@ body {
   }
 }
 
+.puzzle-tooltip {
+  position: absolute;
+  width: 150px; /* Adjust as needed */
+  height: 150px; /* Adjust as needed */
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000; /* Ensure it's above other content */
+  top: 50%; /* Center vertically relative to the button */
+  left: -180px; /* Move to the left of the button */
+  transform: translateY(-50%); /* Ensure it's centered vertically */
+}
+
+@layer components {
+  .puzzle-list {
+    @apply grid grid-cols-1 gap-4 w-full max-w-2xl mx-auto my-8 p-6 bg-gray-700 rounded-lg shadow-lg flex flex-col items-stretch text-white;
+  }
+
+  .puzzle-item-container {
+    @apply relative flex w-full; /* Flex added to manage full width and positioning */
+  }
+
+  .puzzle-item {
+    @apply flex justify-between items-center py-2 px-4 bg-gray-600 text-white w-full; /* Flex-grow removed, full width applied */
+  }
+
+  .puzzle-tooltip {
+    @apply absolute w-24 h-24 bg-gray-800 rounded-lg shadow-lg flex justify-center items-center overflow-hidden z-50 opacity-0 invisible transition-opacity duration-300 ease-in-out;
+    left: calc(-100% - 0.5rem); /* Adjusted to fully appear to the left */
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .puzzle-item-container:hover .puzzle-tooltip {
+    @apply opacity-100 visible;
+  }
+}
+
+
+.puzzle-item-container:hover .puzzle-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+
+
+
 @layer components {
   .main-content {
     @apply flex justify-center items-start; /* Horizontally align and start align vertically */
