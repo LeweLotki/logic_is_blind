@@ -8,9 +8,11 @@ module.exports = {
       extend: {
         height: {
           '50': '12.5rem',
+          '120': '30rem'
         },
         width: {
           '50': '12.5rem',
+          '120': '30rem'
         },
         fontFamily: {
           montserrat: ['Montserrat', 'sans-serif'],

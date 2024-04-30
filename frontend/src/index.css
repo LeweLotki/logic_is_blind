@@ -171,10 +171,18 @@ body {
   visibility: visible;
 }
 
+@layer components {
+  .puzzle-preview {
+    @apply w-full max-w-2xl mx-auto my-8 p-6 bg-gray-700 rounded-lg shadow-lg;
+    @apply grid grid-cols-1 gap-4;
+  }
+}
 
-
-
-
+@layer components {
+  .puzzle-image-preview {
+    @apply h-120 w-120
+  }
+}
 
 @layer components {
   .main-content {
