@@ -185,10 +185,28 @@ body {
 }
 
 @layer components {
+  .ready-btn-container {
+    @apply bg-gray-700 rounded-lg pt-6;
+  }
+  .ready-btn-button {
+    @apply bg-gray-500 hover:bg-gray-600 text-white font-bold px-4 py-2 rounded mt-2 mx-auto; /* Margin-top can be adjusted */
+  }
+}
+
+
+
+@layer components {
   .main-content {
     @apply flex justify-center items-start; /* Horizontally align and start align vertically */
   }
 }
+
+@layer components {
+  .main-content-preview {
+    @apply flex flex-col justify-center items-center; /* Vertically align and center align horizontally */
+  }
+}
+
 
   
 

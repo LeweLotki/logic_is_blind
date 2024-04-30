@@ -1,6 +1,6 @@
 import { usePuzzle } from "../../hooks/PreviewContext";
 
-const Logo = () => {
+const PuzzlePreview = () => {
 
   const puzzle = usePuzzle();
 
@@ -11,4 +11,4 @@ const Logo = () => {
   );
 };
 
-export default Logo;
+export default PuzzlePreview;
