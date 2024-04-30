@@ -10,7 +10,7 @@ import Filter from './components/Filter';
 
 import { FilterProvider } from './hooks/FilterContext';
 
-import favicon from './brain-32x32.png'
+import favicon from './assets/brain-32x32.png'
 
 const TITLE = 'Logic Is Blind';
 
