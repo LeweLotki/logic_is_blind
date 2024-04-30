@@ -10,6 +10,8 @@ import Filter from './components/Filter';
 
 import { FilterProvider } from './hooks/FilterContext';
 
+import favicon from './brain-32x32.png'
+
 const TITLE = 'Logic Is Blind';
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
     <div className="app-container min-h-screen w-full bg-gray-300">
         <Helmet>
           <title>{ TITLE }</title>
+          <link rel="icon" type="image/png" href={favicon} />
         </Helmet>
       <Logo />
       <Sidebar />
