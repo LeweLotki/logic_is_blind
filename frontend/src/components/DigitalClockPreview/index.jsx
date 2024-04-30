@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-const DigitalClock = () => {
+const DigitalClock = ({ startTime }) => {
     const [elapsedTime, setElapsedTime] = useState(0);
 
     useEffect(() => {
-        const startTime = Date.now();
-        const timerId = setInterval(() => {
-            setElapsedTime(Date.now() - startTime);
-        }, 1000);
+        if (startTime) { // Only start the timer if startTime has been set
+            const timerId = setInterval(() => {
+                setElapsedTime(Date.now() - startTime);
+            }, 1000);
 
-        return () => {
-            clearInterval(timerId);
-        };
-    }, []);
+            return () => clearInterval(timerId);
+        }
+    }, [startTime]); // Dependency on startTime to reset the interval when it changes
 
     const formatElapsedTime = (milliseconds) => {
         let totalSeconds = Math.floor(milliseconds / 1000);
