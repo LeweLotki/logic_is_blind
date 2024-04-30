@@ -10,6 +10,7 @@ import PuzzlePreview from '../components/PuzzlePreview'
 import ImreadBtn from '../components/ImreadyBtn';
 import DigitalClockPreview from '../components/DigitalClockPreview';
 import InfoPopup from '../components/PopUpInfo';
+import Rules from '../components/Rules';
 
 
 function App() {
@@ -45,7 +46,10 @@ function App() {
             <PuzzlePreview />
             <ImreadBtn />
           </div>
-          {!showPopup && <DigitalClockPreview startTime={startTime} />}
+            <div className="main-content-preview-clock flex">
+              <Rules />
+              {!showPopup && <DigitalClockPreview startTime={startTime} />}
+            </div>
         </div>
         {showPopup && <InfoPopup onClose={handlePopupClose} />}
         <FooterBar />
