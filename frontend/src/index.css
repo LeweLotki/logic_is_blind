@@ -217,12 +217,26 @@ body {
   }
 }
 
+@layer components {
+  .rules-container {
+    @apply w-64 h-96 bg-gray-800 text-white rounded-lg shadow-md mt-4 mb-4 mr-2 mx-auto flex flex-col; /* Reduced height and centered */
+  }
+  .rules-header {
+    @apply bg-gray-700 rounded-t-lg p-2;
+  }
+  .rules-body {
+    @apply overflow-y-auto flex-grow p-4;
+    height: calc(100% - 3rem); /* Set a calculated height assuming header is around 3rem */
+  }
+}
+
 
 @layer components {
   .main-content {
     @apply flex justify-center items-start; /* Horizontally align and start align vertically */
   }
 }
+
 
 @layer components {
   .main-content-preview {

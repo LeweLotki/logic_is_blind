@@ -22,10 +22,10 @@ const InfoPopup = ({ onClose }) => {
       <div className="popup">
         <h2>Welcome to the Puzzle!</h2>
         <p>
-            After closing this pop-up timer will start. Take time to rember the puzzle and the rules, which are as follow: 
+            After closing this pop-up timer will start. Take time to rember the puzzle and the puzzle's rules. 
+            {/* <br></br>
             <br></br>
-            <br></br>
-            {rules}
+            {rules} */}
         </p>
         <button onClick={onClose} className="close-btn">Close</button>
       </div>

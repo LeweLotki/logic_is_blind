@@ -42,14 +42,12 @@ function App() {
         <Logo />
         <Sidebar />
         <div className="main-content-preview-clock flex">
+          <Rules />
           <div className="main-content-preview flex">
             <PuzzlePreview />
             <ImreadBtn />
           </div>
-            <div className="main-content-preview-clock flex">
-              <Rules />
-              {!showPopup && <DigitalClockPreview startTime={startTime} />}
-            </div>
+          {!showPopup && <DigitalClockPreview startTime={startTime} />}
         </div>
         {showPopup && <InfoPopup onClose={handlePopupClose} />}
         <FooterBar />

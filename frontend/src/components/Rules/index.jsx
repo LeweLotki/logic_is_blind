@@ -13,18 +13,20 @@ const Rules = () => {
       const url = `http://localhost:8000/serializer/pop-up?id=${puzzle.id}`;
       fetchData(url).then(data => {
           setRules(data[0].rules);
-          console.log("Full API response:", data);
+          // console.log("Full API response:", data);
       });
   }, [puzzle.id]);
 
     return (
-        <div className="filter-container flex flex-col h-full">
-          <div className="filter-header text-center p-4">
+        <div className="rules-container">
+          <div className="rules-header">
             <h3>Rules of the puzzle</h3>
           </div>
-          <div className="filter-body flex-grow p-4 flex flex-col justify-center">
+          <div className="rules-body">
             <p>
-              Paragraf: {rules}
+              <br></br>
+              {rules}
+              <br></br>
             </p>
           </div>
         </div>
