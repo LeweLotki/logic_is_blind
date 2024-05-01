@@ -202,14 +202,6 @@ body {
 }
 
 @layer components {
-  .digital-clock-solve {
-      @apply text-white text-2xl font-semibold bg-gray-700 p-4 rounded-lg shadow-lg flex items-center justify-center ml-2 mt-4 mx-auto;
-      font-family: 'Montserrat', sans-serif; /* Consistent font for the application */
-      width: 200px; /* Adjust width as needed */
-  }
-}
-
-@layer components {
   .popup-backdrop {
     @apply fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center;
   }
@@ -238,14 +230,6 @@ body {
   }
 }
 
-
-@layer components {
-  .main-content {
-    @apply flex justify-center items-start; /* Horizontally align and start align vertically */
-  }
-}
-
-
 @layer components {
   .main-content-preview {
     @apply flex flex-col justify-center items-center; /* Vertically align and center align horizontally */
@@ -257,10 +241,46 @@ body {
 
 @layer components {
   .main-content-solve {
-    @apply flex items-center justify-center min-h-screen;
+    @apply flex flex-col items-center justify-center min-h-screen;
+    gap: 1rem; /* Adjust the gap between children elements */
   }
 }
 
-  
+@layer components {
+  .main-content-solve, .rules-popup-container {
+    @apply flex flex-col items-center justify-center; /* Removed min-h-screen */
+    gap: 0.5rem; /* Reduced gap for tighter spacing */
+  }
 
+  .ready-btn-button, .rules-popup-btn {
+    @apply bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-2 mx-auto;
+  }
+
+  .rules-popup-body, .digital-clock-solve {
+    @apply text-white bg-gray-700 p-4 rounded-lg shadow-lg flex items-center justify-center mx-auto;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .rules-popup-body {
+    @apply bg-gray-800; /* To differentiate from the digital clock's bg */
+  }
+
+  .digital-clock-solve {
+    @apply text-white text-2xl font-semibold bg-gray-700 p-4 rounded-lg shadow-lg;
+    width: 200px; /* Fixed width for the digital clock */
+    @apply mt-2; /* Ensuring minimal margin-top */
+  }
+
+  .solve-form-container {
+    @apply h-auto py-4; /* Only as high as its content + padding for some breathing room */
+  }
+}
+
+@layer components {
+  .main-content-solve {
+    @apply flex flex-col items-center justify-center;
+    @apply gap-2; 
+    width: 100%; 
+  }
+}
 

@@ -4,16 +4,19 @@ import Sidebar from '../components/common/SideBar';
 
 import SolveForm from '../components/features/Solve/SolveForm/SolveForm';
 import DigitalClockSolve from '../components/features/Solve/DigitalClockSolve';
+import RulesPopUp from '../components/features/Solve/RulesPopUp';
 
 
 function Solve() {
   return (
-    <div className="app-container min-h-screen w-full bg-gray-300">
+    <div>
       <Logo />
       <Sidebar />
       <div className="main-content-solve">
-        <SolveForm />
         <DigitalClockSolve />
+        <SolveForm />
+        <RulesPopUp />
+        
       </div>
       <FooterBar />
     </div>

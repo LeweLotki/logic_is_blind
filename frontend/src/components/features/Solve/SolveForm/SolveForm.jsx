@@ -17,7 +17,7 @@ function SolveForm() {
   };
 
   return (
-    <div className="app-container">
+    <div className="solve-form-container">
       <input
         className="text-center bg-gray-700 text-white font-bold py-2 px-4 rounded-full shadow-md outline-none focus:ring-2 focus:ring-blue-500"
         type="text"
