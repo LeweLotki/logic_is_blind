@@ -1,4 +1,4 @@
-import { usePuzzle } from "../../hooks/PreviewContext";
+import { usePuzzle } from "../../../../hooks/PreviewContext";
 
 const PuzzlePreview = () => {
 

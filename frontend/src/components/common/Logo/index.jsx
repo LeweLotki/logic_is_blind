@@ -1,6 +1,6 @@
 import React from 'react';
-import logoBW from '../../assets/lib_logo.jpg'; // Adjust the path as needed
-import logoColor from '../../assets/lib_logo_color.jpg'; // Path to the colored logo
+import logoBW from '../../../assets/lib_logo.jpg'; // Adjust the path as needed
+import logoColor from '../../../assets/lib_logo_color.jpg'; // Path to the colored logo
 
 const Logo = () => {
   return (

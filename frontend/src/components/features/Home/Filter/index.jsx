@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useFilter } from '../../hooks/FilterContext';
+import { useFilter } from '../../../../hooks/FilterContext';
 
 const Filter = () => {
     const [localDifficulty, setLocalDifficulty] = useState('');

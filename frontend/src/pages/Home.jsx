@@ -1,8 +1,8 @@
-import FooterBar from '../components/FooterBar';
-import Logo from '../components/Logo';
-import Sidebar from '../components/SideBar';
-import PuzzleList from '../components/PuzzleList';
-import Filter from '../components/Filter';
+import FooterBar from '../components/common/FooterBar';
+import Logo from '../components/common/Logo';
+import Sidebar from '../components/common/SideBar';
+import PuzzleList from '../components/features/Home/PuzzleList';
+import Filter from '../components/features/Home/Filter';
 
 import { FilterProvider } from '../hooks/FilterContext';
 

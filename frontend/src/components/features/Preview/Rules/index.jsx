@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { usePuzzle } from "../../hooks/PreviewContext";
-import fetchData from '../../utils/fetchData';
+import { usePuzzle } from "../../../../hooks/PreviewContext";
+import fetchData from '../../../../utils/fetchData';
 
 
 const Rules = () => {

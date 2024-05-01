@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import fetchData from '../../utils/fetchData';
+import fetchData from '../../../../utils/fetchData';
 import PuzzleItem from './PuzzleItem';
-import { useFilter } from '../../hooks/FilterContext';
+import { useFilter } from '../../../../hooks/FilterContext';
 
 const PuzzleList = () => {
     const [puzzles, setPuzzles] = useState([]);
