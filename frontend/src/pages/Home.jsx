@@ -6,7 +6,7 @@ import Filter from '../components/features/Home/Filter';
 
 import { FilterProvider } from '../hooks/FilterContext';
 
-function App() {
+function Home() {
   return (
     <div className="app-container min-h-screen w-full bg-gray-300">
       <Logo />
@@ -23,5 +23,5 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
 

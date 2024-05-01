@@ -1,4 +1,4 @@
-function App() {
+function NotFound() {
   return (
     <h1>
       Page Not Found!
@@ -6,5 +6,5 @@ function App() {
   );
 }
 
-export default App;
+export default NotFound;
 

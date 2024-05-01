@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 
 import Home from './pages/Home';
 import Preview from './pages/Preview';
+import Solve from './pages/Solve'
 import NotFound from './pages/NotFound';
 
 import favicon from './assets/brain-32x32.png'
@@ -21,6 +22,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/preview" element={<Preview />} />
+          <Route path="/solve" element={<Solve />} />
           <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
