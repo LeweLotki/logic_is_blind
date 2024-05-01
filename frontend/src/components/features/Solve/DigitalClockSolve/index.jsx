@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-const DigitalClock = ({ startTime }) => {
+const DigitalClockSolve = () => {
+    const [startTime] = useState(Date.now());
     const [elapsedTime, setElapsedTime] = useState(0);
 
     useEffect(() => {
-        if (startTime) { // Only start the timer if startTime has been set
-            const timerId = setInterval(() => {
-                setElapsedTime(Date.now() - startTime);
-            }, 1000);
+        const timerId = setInterval(() => {
+            setElapsedTime(Date.now() - startTime);
+        }, 1000);
 
-            return () => clearInterval(timerId);
-        }
-    }, [startTime]); // Dependency on startTime to reset the interval when it changes
+        return () => clearInterval(timerId);
+    }, [startTime]); // Dependency on startTime to reset the interval if it ever changes
 
     const formatElapsedTime = (milliseconds) => {
         let totalSeconds = Math.floor(milliseconds / 1000);
@@ -23,10 +22,10 @@ const DigitalClock = ({ startTime }) => {
     };
 
     return (
-        <div className="digital-clock">
+        <div className="digital-clock-solve">
             {formatElapsedTime(elapsedTime)}
         </div>
     );
 };
 
-export default DigitalClock;
+export default DigitalClockSolve;

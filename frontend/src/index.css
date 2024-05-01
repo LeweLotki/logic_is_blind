@@ -194,7 +194,15 @@ body {
 }
 
 @layer components {
-  .digital-clock {
+  .digital-clock-preview {
+      @apply text-white text-2xl font-semibold bg-gray-700 p-4 rounded-lg shadow-lg flex items-center justify-center ml-2 mt-4 mx-auto;
+      font-family: 'Montserrat', sans-serif; /* Consistent font for the application */
+      width: 200px; /* Adjust width as needed */
+  }
+}
+
+@layer components {
+  .digital-clock-solve {
       @apply text-white text-2xl font-semibold bg-gray-700 p-4 rounded-lg shadow-lg flex items-center justify-center ml-2 mt-4 mx-auto;
       font-family: 'Montserrat', sans-serif; /* Consistent font for the application */
       width: 200px; /* Adjust width as needed */
@@ -247,6 +255,11 @@ body {
   }
 }
 
+@layer components {
+  .main-content-solve {
+    @apply flex items-center justify-center min-h-screen;
+  }
+}
 
   
 

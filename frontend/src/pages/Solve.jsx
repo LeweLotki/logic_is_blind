@@ -2,8 +2,8 @@ import FooterBar from '../components/common/FooterBar';
 import Logo from '../components/common/Logo';
 import Sidebar from '../components/common/SideBar';
 
-import SolveForm from '../components/features/Solve/SolveForm';
-import DigitalClock from '../components/common/DigitalClock';
+import SolveForm from '../components/features/Solve/SolveForm/SolveForm';
+import DigitalClockSolve from '../components/features/Solve/DigitalClockSolve';
 
 
 function Solve() {
@@ -11,9 +11,9 @@ function Solve() {
     <div className="app-container min-h-screen w-full bg-gray-300">
       <Logo />
       <Sidebar />
-      <div className="main-content-preview-clock flex">
+      <div className="main-content-solve">
         <SolveForm />
-        <DigitalClock />
+        <DigitalClockSolve />
       </div>
       <FooterBar />
     </div>

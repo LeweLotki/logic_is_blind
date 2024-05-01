@@ -8,7 +8,7 @@ import Logo from '../components/common/Logo';
 import Sidebar from '../components/common/SideBar';
 import PuzzlePreview from '../components/features/Preview/PuzzlePreview'
 import ImreadBtn from '../components/features/Preview/ImreadyBtn';
-import DigitalClock from '../components/common/DigitalClock';
+import DigitalClockPreview from '../components/features/Preview/DigitalClockPreview';
 import InfoPopup from '../components/features/Preview/PopUpInfo';
 import Rules from '../components/features/Preview/Rules';
 
@@ -47,7 +47,7 @@ function Preview() {
             <PuzzlePreview />
             <ImreadBtn />
           </div>
-          {!showPopup && <DigitalClock startTime={startTime} />}
+          {!showPopup && <DigitalClockPreview startTime={startTime} />}
         </div>
         {showPopup && <InfoPopup onClose={handlePopupClose} />}
         <FooterBar />
