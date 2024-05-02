@@ -220,6 +220,7 @@ body {
 @layer components {
   .rules-container {
     @apply w-64 h-96 bg-gray-800 text-white rounded-lg shadow-md mt-4 mb-4 mr-2 mx-auto flex flex-col; /* Reduced height and centered */
+    width: 24rem;
   }
   .rules-header {
     @apply bg-gray-700 rounded-t-lg p-2;
@@ -247,7 +248,7 @@ body {
 }
 
 @layer components {
-  .main-content-solve, .rules-popup-container {
+  .main-content-solve {
     @apply flex flex-col items-center justify-center; /* Removed min-h-screen */
     gap: 0.5rem; /* Reduced gap for tighter spacing */
   }
@@ -274,6 +275,14 @@ body {
   .solve-form-container {
     @apply h-auto py-4; /* Only as high as its content + padding for some breathing room */
   }
+
+  .rules-popup-container {
+    @apply flex flex-col items-center justify-center;
+    gap: 0.5rem;
+    width: 24rem; /* Fixed width */
+}
+
+
 }
 
 @layer components {
