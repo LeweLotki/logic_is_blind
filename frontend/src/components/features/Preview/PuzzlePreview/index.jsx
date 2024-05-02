@@ -2,7 +2,7 @@ import { usePuzzle } from "../../../../hooks/PreviewContext";
 
 const PuzzlePreview = () => {
 
-  const puzzle = usePuzzle();
+  const { puzzle } = usePuzzle();
 
   return (
     <div className="puzzle-preview rounded-lg shadow-lg my-4">
