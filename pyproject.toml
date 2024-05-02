@@ -17,6 +17,8 @@ click = "^8.1.7"
 gunicorn = "^22.0.0"
 flask-migrate = "^4.0.7"
 flask-cors = "^4.0.0"
+flask-session = "^0.8.0"
+uuid = "^1.30"
 
 
 [build-system]

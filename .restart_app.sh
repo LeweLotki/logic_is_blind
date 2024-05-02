@@ -9,4 +9,4 @@ if [ ! -z "$PID" ]; then
 fi
 
 cd $PROJECT_HOME;
-poetry run gunicorn wsgi:app > wsgi.log 2>&1 &
+poetry run gunicorn wsgi:app >> wsgi.log 2>&1 &
