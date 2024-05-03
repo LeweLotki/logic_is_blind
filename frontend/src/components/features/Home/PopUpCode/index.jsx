@@ -14,7 +14,9 @@ const PopupCode = ({ onClose }) => {
           <br></br>
           Your current user token is:
           <br></br>
+          <b>
           {userId ? userId : "No token found"}
+          </b>
           <br></br>
           If you already have a token, you can use it to log in.
         </p>

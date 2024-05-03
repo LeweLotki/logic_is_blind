@@ -285,6 +285,43 @@ body {
 
 }
 
+
+@layer components {
+  .login-container {
+    @apply flex flex-col items-center justify-center p-4 space-y-4 bg-gray-800 shadow-lg rounded-lg;
+    width: 24rem;
+  }
+
+  .login-title {
+    @apply text-lg text-white;
+  }
+
+  .login-form {
+    @apply flex flex-col items-center space-y-2;
+  }
+
+  .login-input {
+    @apply px-4 py-2 border border-gray-600 bg-gray-600 rounded shadow-inner;
+  }
+
+  .login-button {
+    @apply px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700;
+  }
+
+  .login-logout-button {
+    @apply px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700;
+  }
+
+  .login-free-space {
+    @apply h-20;
+  }
+
+  .login-back-button {
+    @apply px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700;
+  }
+}
+
+
 @layer components {
   .main-content-solve {
     @apply flex flex-col items-center justify-center;
