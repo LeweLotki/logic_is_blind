@@ -11,6 +11,7 @@ from .models import db
 
 from .api.serializers.puzzle_list import puzzle_list_serializer 
 from .api.serializers.pop_up import pop_up_serializer 
+from .api.session.token_check import token_check 
 
 from .services.scraper import Scraper
 
@@ -42,6 +43,7 @@ class App:
         self.app.register_blueprint(index)
         self.app.register_blueprint(puzzle_list_serializer, url_prefix='/serializer')
         self.app.register_blueprint(pop_up_serializer, url_prefix='/serializer')
+        self.app.register_blueprint(token_check, url_prefix='/session')
 
     def __register_models(self):
 
@@ -70,6 +72,7 @@ class App:
 
     def __register_cors(self):
         CORS(self.app)
+        CORS(self.app, resources={r"/session/check-token": {"origins": "http://localhost:3000"}})
 
 app_instance = App()
 app = app_instance.app

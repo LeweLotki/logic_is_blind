@@ -297,7 +297,7 @@ body {
   }
 
   .login-form {
-    @apply flex flex-col items-center space-y-2;
+    @apply flex flex-col items-center space-y-2 text-white;
   }
 
   .login-input {

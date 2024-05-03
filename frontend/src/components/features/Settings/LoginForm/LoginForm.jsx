@@ -8,24 +8,54 @@ function LoginForm() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const userId = Cookies.get('user_id');
 
   const handleNavigate = () => {
-    navigate('/');  // Then navigate
+    navigate('/');
   };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  const handleLogin = () => {
-    alert(`Login attempt with: ${inputValue}`);
-    // Implement login logic here
+  const handleLogin = async () => {
+    if (!inputValue.trim()) {
+      setErrorMessage('Please enter a token.');
+      return;
+    }
+    try {
+      const response = await fetch('/session/check-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: inputValue })
+      });
+      const data = await response.json();
+      if (data.exist) {
+        Cookies.remove('user_id');
+        Cookies.set('user_id', inputValue, { expires: 30 }); // Set for 30 days
+        setErrorMessage('');
+        alert('Token validated and set successfully.');
+        navigate('/');
+        window.location.reload(); // Refresh page to apply the new session
+      } else {
+        alert('Token is invalid. Please try another one.');
+        setErrorMessage('Token is invalid. Please try another one.');
+      }
+    } catch (error) {
+      setErrorMessage('Failed to connect to the server. Please try again later.');
+      console.error('Error validating token:', error);
+    }
   };
 
   const handleLogout = () => {
-    alert('Logout clicked');
-    // Implement logout logic here
+    Cookies.remove('user_id');
+    alert('You have been logged out!');
+    navigate('/');
+    window.location.reload()
   };
 
   return (
@@ -51,7 +81,7 @@ function LoginForm() {
           className="login-input"
           placeholder="Enter personal token"
         />
-        <button onClick={handleLogin} className="login-button">Log In</button>
+        <button type="button" onClick={handleLogin} className="login-button">Log In</button>
       </form>
       <div className="login-title">
         If you want to terminate your current session you can do it by clicking the button placed below:
