@@ -8,8 +8,9 @@ import logging
 from .views.index.index import index
 
 from .models import db
-from .models.serializers.puzzle_list import puzzle_list_serializer 
-from .models.serializers.pop_up import pop_up_serializer 
+
+from .api.serializers.puzzle_list import puzzle_list_serializer 
+from .api.serializers.pop_up import pop_up_serializer 
 
 from .services.scraper import Scraper
 
