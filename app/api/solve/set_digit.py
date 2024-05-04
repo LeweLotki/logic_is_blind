@@ -39,10 +39,11 @@ def get_value():
     db.session.add(new_inserted_value)
     db.session.commit()
 
+    puzzle_solved = is_puzzle_solved(puzzle_id=puzzle_id, user_id=token) 
     return jsonify({
-            'exist': session_exists,
-            'digit_given': is_digit_given(row=row, column=column, puzzle_id=puzzle_id),
-            'puzzle_solved': False,
+            'exist': True,
+            'digit_given': False,
+            'puzzle_solved': puzzle_solved,
             'out_of_range': False
             })
 
@@ -63,7 +64,22 @@ def is_digit_given(row: int, column: int, puzzle_id: int) -> bool:
 
 def is_puzzle_solved(puzzle_id, user_id) -> bool:
 
-    pass
+    puzzle = TablePuzzle.query.filter(TablePuzzle.id == puzzle_id).first()
+
+    user_inputs = TableSolve.query\
+                    .filter(TableSolve.user_id == user_id)\
+                    .filter(TableSolve.puzzle_id == puzzle_id)\
+                    .all()
+
+    given_cells = puzzle.cells
+    given_cells = [(given_cell['row'], given_cell['column']) for given_cell in given_cells]
+   
+    user_inputs = [(user_input.row, user_input.column) for user_input in user_inputs]
+
+    all_inputs = [*given_cells, *user_inputs]
+    size = puzzle.size
+
+    return check_all_combinations(size, all_inputs)
 
 
 def is_digit_out_of_range(row: int, column: int, puzzle_id: int) -> bool:
@@ -75,4 +91,17 @@ def is_digit_out_of_range(row: int, column: int, puzzle_id: int) -> bool:
         return True
 
     return False 
+
+
+def check_all_combinations(n, tuples_list) -> bool:
+    tuples_set = set(tuples_list)
+
+    for x in range(1, n + 1):
+        for y in range(1, n + 1):
+            required_tuple = (x, y)
+            if required_tuple not in tuples_set:
+                return False
+
+    return True
+
 
