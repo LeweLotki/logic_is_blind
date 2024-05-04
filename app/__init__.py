@@ -12,6 +12,7 @@ from .models import db
 from .api.serializers.puzzle_list import puzzle_list_serializer 
 from .api.serializers.pop_up import pop_up_serializer 
 from .api.session.token_check import token_check 
+from .api.solve.set_digit import set_digit
 
 from .services.scraper import Scraper
 
@@ -44,6 +45,7 @@ class App:
         self.app.register_blueprint(puzzle_list_serializer, url_prefix='/serializer')
         self.app.register_blueprint(pop_up_serializer, url_prefix='/serializer')
         self.app.register_blueprint(token_check, url_prefix='/session')
+        self.app.register_blueprint(set_digit, url_prefix='/solve')
 
     def __register_models(self):
 
