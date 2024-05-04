@@ -23,41 +23,54 @@ function SolveForm() {
 };
 
 
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-    const token = Cookies.get('user_id'); // Get the token from cookies
-    if (!token) {
-      setDisplay('Authentication token is missing, please log in.');
-      return; // Early return if token is not available
-    }
-    
-    if (input.length === 3) {
-      const requestData = {
-        row: input.charAt(0),
-        column: input.charAt(1),
-        value: input.charAt(2),
-        token: token,
-        puzzle_id: puzzle.id
-      };
-      try {
-        const response = await fetch('http://localhost:8000/solve/set-digit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(requestData),
-        });
-        const data = await response.json();
-        console.log(data);  // Log the response data
-        setDisplay(`Submitted: ${display}`);
-      } catch (error) {
-        console.error('Error submitting the form:', error);
-        setDisplay('Error in submission');
+const handleSubmit = async (event) => {
+  event.preventDefault(); // Prevent the default form submission behavior
+  const token = Cookies.get('user_id'); // Get the token from cookies
+  if (!token) {
+    setDisplay('Authentication token is missing, please log in.');
+    return; // Early return if token is not available
+  }
+  
+  if (input.length === 3) {
+    const requestData = {
+      row: input.charAt(0),
+      column: input.charAt(1),
+      value: input.charAt(2),
+      token: token,
+      puzzle_id: puzzle.id
+    };
+    try {
+      const response = await fetch('http://localhost:8000/solve/set-digit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      });
+      const data = await response.json();
+      console.log(data);  // Log the response data
+
+      // Handle different server response conditions
+      if (!data.exist) {
+        setDisplay('User token is invalid.');
+      } else if (data.digit_given) {
+        setDisplay('Digit was given at start.');
+      } else if (data.puzzle_solved) {
+        setDisplay('You solved the puzzle!');
+      } else if (data.out_of_range) {
+        setDisplay('Position is out of range.');
+      } else {
+        setDisplay(`Submitted: Row ${requestData.row}, Column ${requestData.column}, Value ${requestData.value}`);
       }
-    } else {
-      setDisplay('Please enter all 3 digits');
+    } catch (error) {
+      console.error('Error submitting the form:', error);
+      setDisplay('Error in submission');
     }
-  };
+  } else {
+    setDisplay('Please enter all 3 digits');
+  }
+};
+
 
   return (
     <div className="solve-form-container">

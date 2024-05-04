@@ -19,7 +19,12 @@ def get_value():
 
     session_exists = Session.query.filter_by(user_id=token).first() is not None
     if not session_exists: 
-        return jsonify({'exist': session_exists})
+        return jsonify({
+            'exist': session_exists,
+            'digit_given': False,
+            'puzzle_solved': False,
+            'out_of_range': False
+            })
        
     new_inserted_value = TableSolve(
         user_id=token,
@@ -31,5 +36,25 @@ def get_value():
     db.session.add(new_inserted_value)
     db.session.commit()
 
-    return jsonify({'exist': session_exists})
+    return jsonify({
+            'exist': session_exists,
+            'digit_given': False,
+            'puzzle_solved': False,
+            'out_of_range': False
+            })
+
+
+def is_digit_given(row: int, column: int, value: int, puzzle_id: int) -> bool:
+
+    pass
+
+
+def is_puzzle_solved(puzzle_id, user_id) -> bool:
+
+    pass
+
+
+def is_digit_out_of_range(row: int, column: int, value: int, puzzle_id: int) -> bool:
+
+    pass
 
