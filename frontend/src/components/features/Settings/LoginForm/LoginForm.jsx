@@ -60,11 +60,12 @@ function LoginForm() {
 
   return (
     <div className="login-container">
-      <div className="login-title">
+      <div className="login-header text-white text-center object-top">
         <b>
             Log In
         </b>
-        <br></br>
+      </div>
+      <div className="login-title">
         You are currectly logged in using token:
         <br></br>
         <b>
@@ -88,7 +89,9 @@ function LoginForm() {
       </div>
       <button onClick={handleLogout} className="login-logout-button">Log Out</button>
       <div className="login-free-space"></div> {/* Free space */}
-      <button onClick={handleNavigate} className="login-back-button">Go Back</button>
+      <div className="login-footer text-center p-4 object-bottom">
+        <button onClick={handleNavigate} className="login-back-button">Home Page</button>
+      </div>
     </div>
   );
 }
