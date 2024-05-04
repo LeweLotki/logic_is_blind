@@ -65,6 +65,8 @@ const handleSubmit = async (event) => {
     } catch (error) {
       console.error('Error submitting the form:', error);
       setDisplay('Error in submission');
+    } finally {
+        setInput('');
     }
   } else {
     setDisplay('Please enter all 3 digits');
