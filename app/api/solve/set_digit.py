@@ -20,12 +20,13 @@ def get_value():
 
     session_exists = Session.query.filter_by(user_id=token).first() is not None
     digit_given = is_digit_given(row=row, column=column, puzzle_id=puzzle_id)    
-    if (not session_exists) or digit_given: 
+    digit_out_of_range = is_digit_out_of_range(row=row, column=column, puzzle_id=puzzle_id)
+    if (not session_exists) or digit_given or digit_out_of_range: 
         return jsonify({
             'exist': session_exists,
             'digit_given': digit_given,
             'puzzle_solved': False,
-            'out_of_range': False
+            'out_of_range': digit_out_of_range
             })
 
     new_inserted_value = TableSolve(
@@ -65,7 +66,13 @@ def is_puzzle_solved(puzzle_id, user_id) -> bool:
     pass
 
 
-def is_digit_out_of_range(row: int, column: int, value: int, puzzle_id: int) -> bool:
+def is_digit_out_of_range(row: int, column: int, puzzle_id: int) -> bool:
 
-    pass
+    puzzle = TablePuzzle.query.filter(TablePuzzle.id == puzzle_id).first()
+    size = puzzle.size
+
+    if int(row) > int(size) or int(column) > int(size):
+        return True
+
+    return False 
 
