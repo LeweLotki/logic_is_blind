@@ -16,11 +16,11 @@ const PuzzleItem = ({ puzzle }) => {
             <button onClick={handleNavigate} className="puzzle-item flex justify-center items-center py-3 px-6 text-white font-montserrat w-full">
                 <span className="puzzle-label">{puzzle.title}</span>
                 <span className="divider"></span>
-                <span className="puzzle-label">{puzzle.author}</span>
+                <span className="puzzle-label">{puzzle.size}x{puzzle.size}</span>
                 <span className="divider"></span>
                 <span className="puzzle-label">{puzzle.difficulty}</span>
                 <span className="divider"></span>
-                <span className="puzzle-label">{puzzle.mode}</span>
+                <span className="puzzle-label">{puzzle.standard}</span>
             </button>
             <div className="puzzle-tooltip">
                 <img src={puzzle.image} style={{ width: '100%', height: '100%' }} />
