@@ -4,6 +4,7 @@ from app.models.session import Session
 
 token_check = Blueprint('token_check', __name__)
 
+
 @token_check.route('/check-token', methods=['POST'])
 def check_token():
     token = request.json.get('token')
