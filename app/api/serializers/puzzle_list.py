@@ -10,12 +10,19 @@ puzzle_list_serializer = Blueprint('puzzle_list_serializer', __name__)
 def puzzle_list():
     page = request.args.get('page', 1, type=int)
     difficulty = request.args.get('difficulty', type=str)
+    size = request.args.get('size', type=str)
+    standard = request.args.get('standard', type=str)
+
     limit = 5
     offset = (page - 1) * limit
 
     query = TablePuzzle.query
     if difficulty:
         query = query.filter(TablePuzzle.difficulty == difficulty)
+    if size:
+        query = query.filter(TablePuzzle.size == int(size))
+    if standard:
+        query = query.filter(TablePuzzle.standard == int(bool(standard)))
 
     puzzles = query.offset(offset).limit(limit).all()
     return jsonify([serialize(puzzle) for puzzle in puzzles])

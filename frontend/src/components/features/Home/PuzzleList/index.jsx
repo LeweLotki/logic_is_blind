@@ -6,17 +6,19 @@ import { useFilter } from '../../../../hooks/FilterContext';
 const PuzzleList = () => {
     const [puzzles, setPuzzles] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const { difficulty } = useFilter();
+    const { difficulty, size, standard } = useFilter();
 
     useEffect(() => {
         const params = new URLSearchParams({ page: currentPage });
         if (difficulty) params.append('difficulty', difficulty);
+        if (size) params.append('size', size);
+        if (standard) params.append('standard', standard);
 
         const url = `http://localhost:8000/serializer/puzzle-list?${params.toString()}`;
         fetchData(url).then(data => {
             setPuzzles(data || []);
         });
-    }, [currentPage, difficulty]);
+    }, [currentPage, difficulty, size, standard]);
 
     const handleNext = () => setCurrentPage(prev => prev + 1);
     const handlePrev = () => setCurrentPage(prev => prev > 1 ? prev - 1 : 1);
@@ -33,4 +35,3 @@ const PuzzleList = () => {
 };
 
 export default PuzzleList;
-
