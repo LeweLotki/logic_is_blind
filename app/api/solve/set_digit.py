@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from app.models.solve import TableSolve
+from app.models.puzzles import TablePuzzle
 from app.models.session import Session
 
 from app.models import db
@@ -18,14 +19,15 @@ def get_value():
     puzzle_id = request.json.get('puzzle_id')
 
     session_exists = Session.query.filter_by(user_id=token).first() is not None
-    if not session_exists: 
+    digit_given = is_digit_given(row=row, column=column, puzzle_id=puzzle_id)    
+    if (not session_exists) or digit_given: 
         return jsonify({
             'exist': session_exists,
-            'digit_given': False,
+            'digit_given': digit_given,
             'puzzle_solved': False,
             'out_of_range': False
             })
-       
+
     new_inserted_value = TableSolve(
         user_id=token,
         puzzle_id=int(puzzle_id),
@@ -38,15 +40,24 @@ def get_value():
 
     return jsonify({
             'exist': session_exists,
-            'digit_given': False,
+            'digit_given': is_digit_given(row=row, column=column, puzzle_id=puzzle_id),
             'puzzle_solved': False,
             'out_of_range': False
             })
 
 
-def is_digit_given(row: int, column: int, value: int, puzzle_id: int) -> bool:
+def is_digit_given(row: int, column: int, puzzle_id: int) -> bool:
 
-    pass
+    puzzle = TablePuzzle.query.filter(TablePuzzle.id == puzzle_id).first()
+    given_cells = puzzle.cells
+    if given_cells is None:
+        return False 
+
+    for given_cell in given_cells:
+        if int(given_cell['row']) == int(row) and int(given_cell['column']) == int(column):
+            return True
+
+    return False 
 
 
 def is_puzzle_solved(puzzle_id, user_id) -> bool:
