@@ -30,7 +30,7 @@ class SudokupadScraper:
         self.soup = BeautifulSoup(html, 'html.parser')
         
         return {
-            'sudoku_size' : self.__get_sudoku_size(),
+            'sudoku_size' : self.__get_sudoku_size()[0],
             'given_cells': self.__get_given_cells(),
             'rules'  : self.__get_rules(),
             'title'  : self.__get_title(),

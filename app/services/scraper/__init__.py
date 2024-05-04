@@ -1,6 +1,7 @@
 import requests
 import random
 import logging
+import string
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
@@ -93,7 +94,9 @@ class Scraper:
     def __generate_new_url(self):
 
         second_part_characters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-        random_id = '000' + random.choice(second_part_characters) + str(random.randint(10, 99))
+        characters = string.ascii_letters + string.digits
+        end_characters = ''.join(random.choice(characters) for _ in range(2))
+        random_id = '000' + random.choice(second_part_characters) + end_characters
 
         url = f'{self.logic_master_base_url}?id={random_id}'
 
@@ -138,7 +141,8 @@ class Scraper:
             'solution_code', 
             'rules', 
             'title', 
-            'author' 
+            'author',
+            'sudoku_size'
         ]
 
         if all(data.get(field) is not None for field in required_fields):
@@ -152,7 +156,9 @@ class Scraper:
                 rules=data['rules'],
                 title=data['title'],
                 author=data['author'],
-                difficulty=data['difficulty']
+                difficulty=data['difficulty'],
+                standard=False,
+                size=data['sudoku_size']
             )
             db.session.add(new_puzzle)
             
@@ -187,13 +193,4 @@ class Scraper:
                 self.logger.error(f'Error while translating difficulty: {e}')
                 db.session.rollback()
 
-if __name__ == '__main__':
-
-    scraper = Scraper()
-    # url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000HP3'
-    url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000HGQ'
-    # url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000HL0'
-    # url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000HKV'
-    # url = 'https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000AED'
-    scraper.scrape_url(url=url)
 

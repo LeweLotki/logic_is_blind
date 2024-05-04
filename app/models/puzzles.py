@@ -16,3 +16,5 @@ class TablePuzzle(db.Model):
     title = Column(String, index=True)
     author = Column(String)
     difficulty = Column(String)
+    size = Column(Integer, default=9)
+    standard = Column(Boolean)

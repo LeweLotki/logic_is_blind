@@ -28,5 +28,6 @@ def serialize(self):
         "author": self.author,
         "difficulty": self.difficulty,
         "image": self.puzzle_image,
-        "mode": "non-standard" 
+        "standard": self.standard,
+        "size": self.size
     }
