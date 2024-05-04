@@ -10,7 +10,9 @@ function SolveForm() {
 
   const handleInputChange = (event) => {
     const value = event.target.value;
-    const digitsOnly = value.replace(/\D/g, '').slice(0, 3); // Allow only digits and limit to 3
+    // Remove all non-digit characters, including '0'
+    const digitsOnly = value.replace(/[^\d]/g, '').replace(/0/g, '').slice(0, 3); // Allow only non-zero digits and limit to 3
+    
     setInput(digitsOnly);
 
     if (digitsOnly.length === 3) {
@@ -18,7 +20,8 @@ function SolveForm() {
     } else {
       setDisplay('');
     }
-  };
+};
+
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
