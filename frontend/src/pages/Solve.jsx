@@ -28,12 +28,12 @@ function Solve() {
   // Example props for SudokuGrid
   const exampleSize = 6; // Define the grid size
   const examplePuzzle = [
-    [5, 3, 0, 0, 7, 0],
-    [6, 0, 0, 1, 9, 5],
-    [5, 3, 0, 0, 7, 0],
-    [6, 0, 0, 1, 9, 5],
-    [5, 3, 0, 0, 7, 0],
-    [6, 0, 0, 1, 9, 5]
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
     // Assume the rest of the rows are filled out
   ];
 
@@ -52,7 +52,7 @@ function Solve() {
                 </div>
                 
             </div>
-            {showSudokuGrid && <SudokuGrid size={exampleSize} puzzle={examplePuzzle} />}
+            {showSudokuGrid && <SudokuGrid size={exampleSize} puzzleColors={examplePuzzle} />}
         </div>
         <FooterBar />
     </div>
