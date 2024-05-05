@@ -42,6 +42,7 @@ function Solve() {
         <Logo />
         <Sidebar />
         <div className="flex justify-center items-center w-full" style={{ maxWidth: '1000px' }}>
+            <RulesDisplay isVisible={showRules} />
             <div className="w-1/2 p-4 flex flex-col items-center">
                 <DigitalClockSolve />
                 <SolveForm />
@@ -49,7 +50,7 @@ function Solve() {
                     <RulesDisplayBtn onClick={toggleRules} />
                     <SudokuGridBtn onClick={toggleSudokuGrid} />
                 </div>
-                <RulesDisplay isVisible={showRules} />
+                
             </div>
             {showSudokuGrid && <SudokuGrid size={exampleSize} puzzle={examplePuzzle} />}
         </div>
