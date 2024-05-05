@@ -334,3 +334,25 @@ body {
   }
 }
 
+@layer components {
+  .sudoku-grid-container {
+    @apply flex justify-center items-center p-4;
+  }
+  
+  .sudoku-grid {
+    @apply divide-y divide-transparent; /* Remove visible grid lines by setting them to transparent */
+    width: auto; /* The table width will be auto to contain all cells equally */
+    border-collapse: separate; /* Ensures that spacing is handled correctly */
+    border-spacing: 0.5rem; /* Bigger gap between cells */
+  }
+
+  .sudoku-cell {
+    @apply text-center bg-gray-700 text-white;
+    width: 2.5rem; /* Setting both width and height to the same value */
+    height: 2.5rem; /* Ensure cells are square */
+    line-height: 2.5rem; /* Vertically center the text in the cell */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: semibold; /* Applying semi-bold font weight */
+    @apply rounded-md; /* Rounded corners for cells */
+  }
+}
