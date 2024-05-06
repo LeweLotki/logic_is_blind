@@ -20,7 +20,7 @@ const SolutionGrid = ({ size, puzzle = null }) => {
             <tr key={`row-${rowIndex}`}>
               {row.map((cell, cellIndex) => (
                 <td key={`cell-${rowIndex}-${cellIndex}`}
-                    className="sudoku-cell bg-gray-600">
+                    className="sudoku-cell bg-gray-600 font-semibold">
                   {cell !== 0 ? cell : ""}
                 </td>
               ))}

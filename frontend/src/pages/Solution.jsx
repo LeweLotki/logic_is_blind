@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 import FooterBar from '../components/common/FooterBar';
@@ -6,6 +7,7 @@ import Logo from '../components/common/Logo';
 import SideBar from '../components/common/SideBar';
 
 import SolutionGrid from '../components/features/Solution/SolutionGrid';
+import HomePageBtn from '../components/features/Solution/HomePageBtn';
 
 import { usePuzzle } from '../hooks/PreviewContext';
 
@@ -13,6 +15,12 @@ function Solution() {
   const [size, setSize] = useState(9);
   const [solutionData, setSolutionData] = useState([]); // Renamed for clarity
   const { puzzle } = usePuzzle();
+
+  const navigate = useNavigate(); 
+
+  const handleNavigate = () => {
+    navigate('/'); // , { state: { puzzle } });
+  };
 
   const fetchSolution = async () => { // Renamed for clarity
     const token = Cookies.get('user_id');
@@ -44,8 +52,9 @@ function Solution() {
     <div className="app-container min-h-screen w-full bg-gray-300">
       <Logo />
       <SideBar />
-      <div className="flex justify-center items-center w-full" style={{ maxWidth: '1000px' }}>
+      <div className="flex flex-col items-center w-full" style={{ maxWidth: '1000px' }}>
         <SolutionGrid size={size} puzzle={solutionData} />
+        <HomePageBtn onClick={ handleNavigate } />
       </div>
       <FooterBar />
     </div>
