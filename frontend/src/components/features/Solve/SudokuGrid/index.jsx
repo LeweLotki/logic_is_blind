@@ -26,7 +26,7 @@ const SudokuGrid = ({ size, puzzle = null, puzzleColors = null }) => {
             <tr key={`row-${rowIndex}`}>
               {row.map((cell, cellIndex) => {
                 // Determine cell background color based on puzzleColors matrix
-                const bgColor = puzzleColors[rowIndex][cellIndex] === 1 ? 'bg-gray-300' : 'bg-gray-600';
+                const bgColor = puzzleColors[rowIndex][cellIndex] === 1 ? 'bg-gray-400' : 'bg-gray-600';
                 return (
                   <td key={`cell-${rowIndex}-${cellIndex}`}
                       className={`sudoku-cell ${bgColor}`}>

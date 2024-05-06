@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Preview from './pages/Preview';
 import Solve from './pages/Solve';
 import Settings from './pages/Settings';
+import Solution from './pages/Solution';
 import NotFound from './pages/NotFound';
 
 import { PuzzleProvider } from './hooks/PreviewContext';
@@ -27,6 +28,7 @@ function App() {
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/preview" element={<Preview />} />
                     <Route path="/solve" element={<Solve />} />
+                    <Route path="/solution" element={<Solution />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </PuzzleProvider>
