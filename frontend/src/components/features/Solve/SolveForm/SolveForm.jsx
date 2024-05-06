@@ -44,6 +44,17 @@ function SolveForm({ onFormSubmit }) {  // Receive the callback via props
         } else {
           throw new Error(data.error || 'Unknown error');
         }
+        if (!data.exist) {
+          setDisplay('User token is invalid.');
+        } else if (data.digit_given) {
+          setDisplay('Digit was given at start.');
+        } else if (data.puzzle_solved) {
+          setDisplay('You solved the puzzle!');
+        } else if (data.out_of_range) {
+          setDisplay('Position is out of range.');
+        } else {
+          setDisplay(`Submitted: Row ${requestData.row}, Column ${requestData.column}, Value ${requestData.value}`);
+        }
       } catch (error) {
         console.error('Error submitting the form:', error);
         setDisplay('Error in submission');
