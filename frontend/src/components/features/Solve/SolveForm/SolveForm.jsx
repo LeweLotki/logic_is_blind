@@ -5,7 +5,6 @@ import { usePuzzle } from "../../../../hooks/PreviewContext";
 function SolveForm() {
   const [input, setInput] = useState('');
   const [display, setDisplay] = useState('');
-
   const { puzzle } = usePuzzle();
 
   const handleInputChange = (event) => {
@@ -43,9 +42,9 @@ const handleSubmit = async (event) => {
       const response = await fetch('http://localhost:8000/solve/set-digit', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(requestData),
+        body: JSON.stringify(requestData)
       });
       const data = await response.json();
       console.log(data);  // Log the response data

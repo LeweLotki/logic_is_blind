@@ -26,7 +26,7 @@ def get_value():
             'exist': session_exists,
             'digit_given': digit_given,
             'puzzle_solved': False,
-            'out_of_range': digit_out_of_range
+            'out_of_range': digit_out_of_range,
             })
 
     new_inserted_value = TableSolve(
@@ -44,7 +44,7 @@ def get_value():
             'exist': True,
             'digit_given': False,
             'puzzle_solved': puzzle_solved,
-            'out_of_range': False
+            'out_of_range': False,
             })
 
 
@@ -105,3 +105,4 @@ def check_all_combinations(n, tuples_list) -> bool:
     return True
 
 
+  
