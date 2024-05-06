@@ -71,7 +71,6 @@ function Solve() {
           <div className="flex justify-center items-center gap-4 mt-4">
             <RulesDisplayBtn onClick={toggleRules} />
             <SudokuGridBtn onClick={toggleSudokuGrid} />
-            <button onClick={ handleNavigate }>See Solution</button>
           </div>
         </div>
         {showSudokuGrid && <SudokuGrid size={size} puzzleColors={takenCells} />}

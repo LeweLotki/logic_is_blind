@@ -2,11 +2,14 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import { usePuzzle } from "../../../../hooks/PreviewContext";
+import { useNavigate } from 'react-router-dom';
 
 function SolveForm({ onFormSubmit }) {  // Receive the callback via props
   const [input, setInput] = useState('');
   const [display, setDisplay] = useState('');
   const { puzzle } = usePuzzle();
+
+  const navigate = useNavigate(); 
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -50,6 +53,7 @@ function SolveForm({ onFormSubmit }) {  // Receive the callback via props
           setDisplay('Digit was given at start.');
         } else if (data.puzzle_solved) {
           setDisplay('You solved the puzzle!');
+          navigate('/solution');
         } else if (data.out_of_range) {
           setDisplay('Position is out of range.');
         } else {
