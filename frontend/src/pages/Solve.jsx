@@ -15,12 +15,20 @@ import RulesDisplayBtn from '../components/features/Solve/RulesDisplayBtn';
 
 import { usePuzzle } from '../hooks/PreviewContext';
 
+import { useNavigate } from 'react-router-dom';
+
 function Solve() {
   const [showSudokuGrid, setShowSudokuGrid] = useState(false);
   const [showRules, setShowRules] = useState(false);
   const [size, setSize] = useState(9);
   const [takenCells, setTakenCells] = useState([]);
   const { puzzle } = usePuzzle();
+
+  const navigate = useNavigate(); 
+
+  const handleNavigate = () => {
+    navigate('/solution'); // , { state: { puzzle } });
+  };
 
   const fetchTakenCells = async () => { // This method is now reusable
     const token = Cookies.get('user_id');
@@ -63,6 +71,7 @@ function Solve() {
           <div className="flex justify-center items-center gap-4 mt-4">
             <RulesDisplayBtn onClick={toggleRules} />
             <SudokuGridBtn onClick={toggleSudokuGrid} />
+            <button onClick={ handleNavigate }>See Solution</button>
           </div>
         </div>
         {showSudokuGrid && <SudokuGrid size={size} puzzleColors={takenCells} />}
