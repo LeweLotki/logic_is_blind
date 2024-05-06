@@ -1,3 +1,4 @@
+// Solve.jsx
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
@@ -18,32 +19,32 @@ function Solve() {
   const [showSudokuGrid, setShowSudokuGrid] = useState(false);
   const [showRules, setShowRules] = useState(false);
   const [size, setSize] = useState(9);
-  const [takenCells, setTakenCells] = useState([]);  // Use local state to handle taken cells
+  const [takenCells, setTakenCells] = useState([]);
   const { puzzle } = usePuzzle();
 
-  useEffect(() => {
-    const fetchTakenCells = async () => {
-      const token = Cookies.get('user_id');
-      if (token && puzzle && puzzle.id) {
-        const queryParams = new URLSearchParams({ token, puzzle_id: puzzle.id });
-        try {
-          const response = await fetch(`http://localhost:8000/solve/get-cells?${queryParams}`, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-          });
-          const data = await response.json();
-          if (response.ok) {
-            setTakenCells(data.taken_cells);
-            setSize(data.taken_cells.length); // Sets the size to the number of rows in the matrix
-          } else {
-            throw new Error('Failed to fetch taken cells');
-          }
-        } catch (error) {
-          console.error('Error fetching initial taken cells:', error);
+  const fetchTakenCells = async () => { // This method is now reusable
+    const token = Cookies.get('user_id');
+    if (token && puzzle && puzzle.id) {
+      const queryParams = new URLSearchParams({ token, puzzle_id: puzzle.id });
+      try {
+        const response = await fetch(`http://localhost:8000/solve/get-cells?${queryParams}`, {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setTakenCells(data.taken_cells);
+          setSize(data.taken_cells.length);
+        } else {
+          throw new Error('Failed to fetch taken cells');
         }
+      } catch (error) {
+        console.error('Error fetching initial taken cells:', error);
       }
-    };
+    }
+  };
 
+  useEffect(() => {
     fetchTakenCells();
   }, [puzzle]);
 
@@ -58,7 +59,7 @@ function Solve() {
         <RulesDisplay isVisible={showRules} />
         <div className="w-1/2 p-4 flex flex-col items-center">
           <DigitalClockSolve />
-          <SolveForm />
+          <SolveForm onFormSubmit={fetchTakenCells} />
           <div className="flex justify-center items-center gap-4 mt-4">
             <RulesDisplayBtn onClick={toggleRules} />
             <SudokuGridBtn onClick={toggleSudokuGrid} />
