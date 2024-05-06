@@ -1,21 +1,15 @@
 import React from 'react';
 
-const SolutionGrid = ({ size, puzzle = null, puzzleColors = null }) => {
+const SolutionGrid = ({ size, puzzle = null }) => {
   // Default puzzle matrix with all zeros if not provided
   if (!puzzle) {
     puzzle = Array.from({ length: size }, () => Array(size).fill(0));
   }
 
-  // Default puzzleColors matrix if not provided
-  if (!puzzleColors) {
-    puzzleColors = Array.from({ length: size }, () => Array(size).fill(0));
-  }
-
-  // Ensure the puzzle and puzzleColors size matches the expected size
-  if (puzzle.length !== size || puzzle.some(row => row.length !== size) ||
-      puzzleColors.length !== size || puzzleColors.some(row => row.length !== size)) {
-    console.error("Puzzle size mismatch or PuzzleColors size mismatch");
-    return <div>Invalid puzzle data or color data</div>;
+  // Ensure the puzzle size matches the expected size
+  if (puzzle.length !== size || puzzle.some(row => row.length !== size)) {
+    console.error("Puzzle size mismatch");
+    return <div>Invalid puzzle data</div>;
   }
 
   return (
@@ -24,16 +18,12 @@ const SolutionGrid = ({ size, puzzle = null, puzzleColors = null }) => {
         <tbody>
           {puzzle.map((row, rowIndex) => (
             <tr key={`row-${rowIndex}`}>
-              {row.map((cell, cellIndex) => {
-                // Determine cell background color based on puzzleColors matrix
-                const bgColor = puzzleColors[rowIndex][cellIndex] === 1 ? 'bg-gray-400' : 'bg-gray-600';
-                return (
-                  <td key={`cell-${rowIndex}-${cellIndex}`}
-                      className={`sudoku-cell ${bgColor}`}>
-                    {cell || ""}
-                  </td>
-                );
-              })}
+              {row.map((cell, cellIndex) => (
+                <td key={`cell-${rowIndex}-${cellIndex}`}
+                    className="sudoku-cell bg-gray-600">
+                  {cell !== 0 ? cell : ""}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>
