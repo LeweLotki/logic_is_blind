@@ -28,7 +28,6 @@ const Filter = () => {
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
-                <option value="very hard">Very Hard</option>
             </select>
 
             <label className="filter-label" htmlFor="size">Size:</label>

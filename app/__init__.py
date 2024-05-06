@@ -17,7 +17,7 @@ from .api.solve.get_cells import get_cells
 from .api.solve.get_solution import get_solution
 
 from .services.scraper import Scraper
-
+from .services.collect_sudoku import Collector
 
 class App:
 
@@ -61,7 +61,7 @@ class App:
 
     def __register_commands(self):
 
-        @self.app.cli.command("run-scraper")
+        @self.app.cli.command("scraper")
         @click.argument('url', required=False, default=None)
         def run_scraper_command(url):
             """ Command to start the scraping process. """
@@ -73,6 +73,13 @@ class App:
                     scraper.scrape_by_id()
                 self.logger.info(f"Scraping completed for {url}.")
 
+        @self.app.cli.command("collect")
+        @click.argument('url', required=False, default=None)
+        def run_collector_command(url):
+            """ Command to start the scraping process. """
+            with self.app.app_context():
+                collector = Collector()
+ 
     def __register_migrate(self):
         migrate = Migrate(self.app, db)
 
