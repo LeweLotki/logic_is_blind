@@ -22,7 +22,7 @@ def puzzle_list():
     if size:
         query = query.filter(TablePuzzle.size == int(size))
     if standard:
-        query = query.filter(TablePuzzle.standard == int(bool(standard)))
+        query = query.filter(TablePuzzle.standard == bool(standard))
 
     puzzles = query.offset(offset).limit(limit).all()
     return jsonify([serialize(puzzle) for puzzle in puzzles])

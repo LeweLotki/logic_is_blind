@@ -40,13 +40,6 @@ const Filter = () => {
                 <option value="8">8x8</option>
                 <option value="9">9x9</option>
             </select>
-            
-            <label className="filter-label" htmlFor="standard">Standard:</label>
-            <select className="filter-select" value={localStandard} onChange={e => setLocalStandard(e.target.value)}>
-                <option value="">Both</option>
-                <option value="True">Standard</option>
-                <option value="False">Non-Standard</option>
-            </select>
 
             </div>
             <div className="filter-footer text-center p-4">

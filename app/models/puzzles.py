@@ -8,7 +8,7 @@ class TablePuzzle(db.Model):
 
     id = Column(Integer, primary_key=True)
     puzzle_image = Column(String)
-    logic_master_url = Column(String, unique=True)
+    logic_master_url = Column(String)
     sudoku_pad_ref = Column(String)
     solution_code = Column(String)
     cells = Column(JSON)

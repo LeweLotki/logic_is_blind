@@ -21,10 +21,12 @@ class Collector:
 
     def __collect(self):
 
-        fetched_data = self.__fetch_sudoku_grids()
-        data = self.__preper_data(fetched_data)
-        self.__commit_collected_data(data)
-        self.__display_sudoku_grids(data)
+        for i in range(100):
+
+            fetched_data = self.__fetch_sudoku_grids()
+            data = self.__preper_data(fetched_data)
+            self.__commit_collected_data(data)
+            self.__display_sudoku_grids(data)
 
     def __fetch_sudoku_grids(self):
         response = requests.get(self.full_url)
@@ -46,11 +48,17 @@ class Collector:
 
         count = db.session.query(func.count(TablePuzzle.id)).scalar()
         title = f'Sudoku #{count}'
+        
+        difficulty_dict = {
+            'Easy': 'easy',
+            'Medium': 'medium',
+            'Hard': 'hard'
+        }
 
         data = {
             'grid': grid,
             'solution': solution,
-            'difficulty': difficulty,
+            'difficulty': difficulty_dict[difficulty],
             'title': title
         }
 
