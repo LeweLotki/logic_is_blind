@@ -62,6 +62,9 @@
   "scripts": {
     "start": "concurrently --kill-others \"node server.js\" \"gunicorn wsgi:app\""
   }
+},
+"engines": {
+  "node": "14.x"
 }
 
 }
