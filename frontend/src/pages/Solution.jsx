@@ -27,7 +27,7 @@ function Solution() {
     if (token && puzzle && puzzle.id) {
       const queryParams = new URLSearchParams({ token, puzzle_id: puzzle.id });
       try {
-        const response = await fetch(`http://localhost:8000/solve/get-solution?${queryParams}`, {
+        const response = await fetch(`http:///solve/get-solution?${queryParams}`, {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
         });

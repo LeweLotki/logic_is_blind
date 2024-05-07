@@ -9,7 +9,7 @@ const Rules = ({ isVisible }) => {
   useEffect(() => {
     if (isVisible && puzzle && puzzle.id) { // Only fetch when component is visible and puzzle is defined
       console.log("Fetching rules for puzzle ID:", puzzle.id);  // Debugging output
-      const url = `http://localhost:8000/serializer/pop-up?id=${puzzle.id}`;
+      const url = `http:///serializer/pop-up?id=${puzzle.id}`;
       fetchData(url).then(data => {
         if (data && data.length > 0) {
           setRules(data[0].rules);

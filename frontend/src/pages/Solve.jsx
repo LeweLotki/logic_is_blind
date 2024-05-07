@@ -35,7 +35,7 @@ function Solve() {
     if (token && puzzle && puzzle.id) {
       const queryParams = new URLSearchParams({ token, puzzle_id: puzzle.id });
       try {
-        const response = await fetch(`http://localhost:8000/solve/get-cells?${queryParams}`, {
+        const response = await fetch(`http:///solve/get-cells?${queryParams}`, {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
         });
