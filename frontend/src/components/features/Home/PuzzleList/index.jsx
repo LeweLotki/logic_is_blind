@@ -14,7 +14,7 @@ const PuzzleList = () => {
         if (size) params.append('size', size);
         if (standard) params.append('standard', standard);
 
-        const url = `http://localhost:8000/serializer/puzzle-list?${params.toString()}`;
+        const url = `/serializer/puzzle-list?${params.toString()}`;
         fetchData(url).then(data => {
             setPuzzles(data || []);
         });
