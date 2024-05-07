@@ -13,4 +13,5 @@
 ### Database:
 - sqlite3
 
-Deployment: Heroku
+### Deployment: 
+- Heroku
