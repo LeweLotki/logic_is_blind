@@ -1,5 +1,6 @@
 # logic_is_blind
 
+# Documentation:
 ## Tech stack:
 ### Frontend:
 - React.js
