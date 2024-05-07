@@ -1,2 +1,2 @@
-web: gunicorn wsgi:app 
+web: npm run build --prefix frontend && gunicorn wsgi:app
 
