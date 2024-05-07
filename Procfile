@@ -1,2 +1,2 @@
-web: cd frontend && npm install && npm run build && cd .. && web: poetry run gunicorn wsgi:app --workers 4 --timeout 120
+web: cd frontend && npm install && npm run build && cd .. && python -m gunicorn wsgi:app
 
