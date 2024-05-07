@@ -10,7 +10,7 @@ const InfoPopup = ({ onClose }) => {
 
     useEffect(() => {
 
-        const url = `http:///serializer/pop-up?id=${puzzle.id}`;
+        const url = `/serializer/pop-up?id=${puzzle.id}`;
         fetchData(url).then(data => {
             setRules(data[0].rules);
             console.log("Full API response:", data);

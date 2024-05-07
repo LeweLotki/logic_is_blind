@@ -33,7 +33,7 @@ function SolveForm({ onFormSubmit }) {  // Receive the callback via props
         puzzle_id: puzzle.id
       };
       try {
-        const response = await fetch('http:///solve/set-digit', {
+        const response = await fetch('/solve/set-digit', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
